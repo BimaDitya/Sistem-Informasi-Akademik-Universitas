@@ -15,17 +15,26 @@
       <div class="col-md-5 mt-5">
         <main class="form-signin">
           <h3 class="h3 mb-3 fw-normal text-center">Selamat Datang</h3>
-          <form>
-            <div class="h7 form-floating">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-              <label for="floatingInput">Email</label>
+          <form class="card p-4" action="/" method="POST">
+            @csrf
+            <div class="card-body">
+              <div class="h7 form-floating">
+                <input type="number" name="nim" class="form-control" @error('nim') is-invalid @enderror id="nim" placeholder="Nomor Induk Mahasiswa" autofocus required value="{{ old ('nim') }}">
+                <label for="nim">Nomor Induk Mahasiswa</label>
+              </div>
+              <div class="h7 form-floating">
+                <input type="password" name="password" class="form-control" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+              </div>
+              <button class="w-100 btn btn-lg btn-primary" type="submit">Masuk</button>
             </div>
-            <div class="h7 form-floating">
-              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-              <label for="floatingPassword">Password</label>
-            </div>
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Masuk</button>
           </form>
+          @if (session()->has('ErrorLogin'))
+              <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                {{ session('ErrorLogin') }}
+                <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label="Close"></button>
+              </div>
+          @endif
         </main>
       </div>
     </div>
