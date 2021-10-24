@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\BerandaController;
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BerandaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [LoginController::class, 'login']);
+Route::get('/', [LoginController::class, 'index']);
 Route::post('/', [LoginController::class, 'authenticate']);
-Route::get('/beranda', [BerandaController::class, 'beranda']);
+
+Route::get('/Beranda', [BerandaController::class, 'index']);
+
+Route::get('/Admin', [AdminController::class, 'index']);
+Route::post('/Admin', [AdminController::class, 'create']);
