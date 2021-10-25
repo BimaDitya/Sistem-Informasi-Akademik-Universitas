@@ -16,10 +16,14 @@ use App\Http\Controllers\BerandaController;
 |
 */
 
-Route::get('/', [LoginController::class, 'index']);
-Route::post('/', [LoginController::class, 'authenticate']);
+Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/', [LoginController::class, 'authMahasiswa']);
+Route::post('/Logout', [LoginController::class, 'logoutMahasiswa']);
 
-Route::get('/Beranda', [BerandaController::class, 'index']);
+Route::get('/Beranda', [BerandaController::class, 'index'])->middleware('auth');
 
 Route::get('/Admin', [AdminController::class, 'index']);
-Route::post('/Admin', [AdminController::class, 'create']);
+Route::post('/Admin', [AdminController::class, 'store']);
+Route::get('/Admin/{id}', [AdminController::class, 'detail']);
+Route::post('/Admin/{id}/Update', [AdminController::class, 'update']);
+Route::delete('/Admin/{id}/Hapus', [AdminController::class, 'delete']);

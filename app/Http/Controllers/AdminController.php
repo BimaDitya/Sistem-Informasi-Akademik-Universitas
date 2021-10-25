@@ -9,24 +9,53 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function index() 
+    public function create()
     {
-        $Mahasiswa = \App\Models\Student::all();
-        return view('Admin.Index', ['Title' => 'Admin', 'Mahasiswa' => $Mahasiswa]);
+        return view('Admin.Index', ['Title' => 'Admin']);
+    }
+    
+    public function store(Request $request)
+    {
+        $store = new Student;
+        $store -> nim = $request->nim;
+        $store -> agama = $request->agama;
+        $store -> nama_depan = $request->nama_depan;
+        $store -> jenis_kelamin = $request->jenis_kelamin;
+        $store -> nama_belakang = $request->nama_belakang;
+        $store -> password = Hash::make($request->password);
+        $store ->save();
+        return redirect()->intended('/Admin')->with('Berhasil', 'Data Berhasil Ditambah');
     }
 
-    public function create(Request $request)
+    public function index() 
     {
+        $Mhs = Student::all();
+        return view('Admin.Index', ['Title' => 'Admin', 'Mhs' => $Mhs]);
+    }
 
-        $create = new Student;
-        $create -> nim = $request -> nim;
-        $create -> nama_depan = $request -> nama_depan;
-        $create -> nama_belakang = $request -> nama_belakang;
-        $create -> jenis_kelamin = $request -> jenis_kelamin;
-        $create -> agama = $request -> agama;
-        $create -> alamat = $request -> alamat;
-        $create -> password = Hash::make($request->password);
-        $create->save();
-        return redirect()->intended('/Admin');
+    public function detail($id)
+    {
+        $Mhs = Student::find($id);
+        return view('Beranda.Update', ['Title' => 'Update', 'Mhs' => $Mhs]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $store = Student::find($id);
+        $store -> nim = $request->nim;
+        $store -> agama = $request->agama;
+        $store -> nama_depan = $request->nama_depan;
+        $store -> jenis_kelamin = $request->jenis_kelamin;
+        $store -> nama_belakang = $request->nama_belakang;
+        $store -> password = Hash::make($request->password);
+        $store ->save();
+        return redirect('/Admin')->with('Berhasil', 'Data Berhasil Diperbarui');
+    }
+
+    public function delete($id)
+    {
+        $Mhs = Student::find($id);
+        $Mhs->delete();
+        return redirect('/Admin')->with('Berhasil', 'Data Berhasil Dihapus');
     }
 }

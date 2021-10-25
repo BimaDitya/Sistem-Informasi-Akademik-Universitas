@@ -17,12 +17,12 @@ class CreateStudentTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->char('nim');
+            $table->string('agama');
             $table->string('password');
             $table->string('nama_depan');
             $table->string('nama_belakang');
             $table->string('jenis_kelamin');
-            $table->string('agama');
-            $table->text('alamat');
+            $table->rememberToken();
         });
     }
 

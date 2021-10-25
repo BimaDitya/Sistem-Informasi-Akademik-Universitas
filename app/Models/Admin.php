@@ -12,21 +12,4 @@ class Admin extends Model
     public $timestamps = false;
     
     protected $table = 'students';
-
-    public function setPasswordAtrributes($password) 
-    {
-        $this->attributes['password'] = bcrypt($password);
-    }
-
-    protected $fillable = [
-        'nama_depan',
-        'nama_belakang',
-        'jenis_kelamin',
-        'agama',
-        'alamat', 
-        'nim',
-        'password'
-    ];
-    
-    protected $hidden = 'password';
 }
