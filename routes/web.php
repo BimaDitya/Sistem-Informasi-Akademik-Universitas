@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BerandaController;
+use App\Http\Controllers\DataMahasiswaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,8 @@ Route::post('/Admin', [AdminController::class, 'store']);
 Route::get('/Admin/{id}', [AdminController::class, 'detail']);
 Route::post('/Admin/{id}/Update', [AdminController::class, 'update']);
 Route::delete('/Admin/{id}/Hapus', [AdminController::class, 'delete']);
+
+Route::get('/DataMahasiswa', [DataMahasiswaController::class, 'index']);
+Route::get('/DataMahasiswa/CreateDataMahasiswa', [DataMahasiswaController::class, 'create']);
+Route::post('/DataMahasiswa', [DataMahasiswaController::class, 'store']);
+

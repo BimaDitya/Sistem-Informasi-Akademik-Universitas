@@ -19,7 +19,6 @@ class StudentSeeder extends Seeder
             'nama_belakang' => 'Aditya',
             'jenis_kelamin' => 'L',
             'agama' => 'Islam',
-            'alamat' => 'Bojonegoro',
             'nim' => '19050974042',
             'password' => bcrypt('12345678'),
         ]);
