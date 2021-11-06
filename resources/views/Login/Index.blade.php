@@ -19,12 +19,6 @@
     <div class="container py-5">
       <div class="row justify-content-center">
         <div class="col-lg-6">
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Mahasiswa</button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Admin</button>
-            </div>
-          </nav>
           <div class="tab-content" id="nav-tabContent">
             {{-- Tab Mahasiswa --}}
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -49,30 +43,6 @@
                       {{ session('Gagal') }}
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                  @endif
-                </main>
-              </div>
-            </div>
-            {{-- Tab Admin --}}
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <div class="card py-2 px-4 shadow-sm">
-                <main class="form-signin text-center">
-                  <h1 class="h1 fw-normal login-heading-font azure-color-01">Selamat Datang</h1>
-                  <p class="fs-6 mb-3">Masuk Sebagai Admin</p>
-                  <form action="/" method="POST">
-                    @csrf
-                    <div class="form-floating mb-3">
-                      <input type="number" title="Masukkan ID" name="nim" id="nim" class="form-control" placeholder="Nomor Identitas Admin" autofocus required>
-                      <label for="nim">Nomor Indentitas Admin</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                      <input type="password" pattern=".{8,}" title="Minimal 8 Atau Lebih" name="password" id="password" class="form-control" placeholder="Password" required>
-                      <label for="password">Kata Sandi</label>
-                    </div>
-                    <button class="w-100 btn btn-lg btn-outline-primary fw-bold mb-3" type="submit">Masuk</button>
-                  </form>
-                  @if (session()->has('LoginError'))
-                      <div class="mt-3 alert alert-danger alert-dissmisible fade show" role="alert">{{ session('LoginError') }}</div>
                   @endif
                 </main>
               </div>

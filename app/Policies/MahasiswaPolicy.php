@@ -2,21 +2,21 @@
 
 namespace App\Policies;
 
-use App\Models\Pengguna;
-use App\Models\User;
+use App\Models\Mahasiswa;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use ;
 
-class PenggunaPolicy
+class MahasiswaPolicy
 {
     use HandlesAuthorization;
 
     /**
      * Determine whether the user can view any models.
      *
-     * @param  \App\Models\User  $user
+     * @param  \  $
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function viewAny(User $user)
+    public function viewAny( $)
     {
         //
     }
@@ -24,11 +24,11 @@ class PenggunaPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengguna  $pengguna
+     * @param  \  $
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Pengguna $pengguna)
+    public function view( $, Mahasiswa $mahasiswa)
     {
         //
     }
@@ -36,10 +36,10 @@ class PenggunaPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\User  $user
+     * @param  \  $
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create( $)
     {
         //
     }
@@ -47,11 +47,11 @@ class PenggunaPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengguna  $pengguna
+     * @param  \  $
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Pengguna $pengguna)
+    public function update( $, Mahasiswa $mahasiswa)
     {
         //
     }
@@ -59,11 +59,11 @@ class PenggunaPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengguna  $pengguna
+     * @param  \  $
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Pengguna $pengguna)
+    public function delete( $, Mahasiswa $mahasiswa)
     {
         //
     }
@@ -71,11 +71,11 @@ class PenggunaPolicy
     /**
      * Determine whether the user can restore the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengguna  $pengguna
+     * @param  \  $
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Pengguna $pengguna)
+    public function restore( $, Mahasiswa $mahasiswa)
     {
         //
     }
@@ -83,11 +83,11 @@ class PenggunaPolicy
     /**
      * Determine whether the user can permanently delete the model.
      *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Pengguna  $pengguna
+     * @param  \  $
+     * @param  \App\Models\Mahasiswa  $mahasiswa
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Pengguna $pengguna)
+    public function forceDelete( $, Mahasiswa $mahasiswa)
     {
         //
     }

@@ -2,26 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Account;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Student extends Model
 {
     use HasFactory;
-    
-    public $timestamps = false;
 
     protected $table = 'students';
 
-    protected $fillable = [
-        'nim',
-        'agama',
-        'password',
-        'nama_depan',
-        'nama_belakang',
-        'jenis_kelamin',
-    ];
+    public $timestamps = false;
 
-    protected $hidden = 'password';
-
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

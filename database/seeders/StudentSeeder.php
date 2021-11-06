@@ -15,12 +15,12 @@ class StudentSeeder extends Seeder
     public function run()
     {
         Student::create([
-            'nama_depan' => 'Bima',
-            'nama_belakang' => 'Aditya',
-            'jenis_kelamin' => 'L',
+            'account_id' => 1,
             'agama' => 'Islam',
-            'nim' => '19050974042',
-            'password' => bcrypt('12345678'),
+            'tempat_lahir' => 'Bojonegoro',
+            'tanggal_lahir' => 1999-10-30,
+            'jenis_kelamin' => 'Laki-Laki',
+            'jalur_penerimaan' => 'SBMPTN',
         ]);
     }
 }

@@ -22,14 +22,13 @@ Route::post('/', [LoginController::class, 'authMahasiswa']);
 Route::post('/Logout', [LoginController::class, 'logoutMahasiswa']);
 
 Route::get('/Beranda', [BerandaController::class, 'index'])->middleware('auth');
+Route::get('/Mahasiswa/Detail/', [BerandaController::class, 'detailStudent']);
+Route::post('/Mahasiswa/Store', [BerandaController::class, 'storeStudent']);
+Route::get('/Mahasiswa/Update/Detail', [BerandaController::class, 'updateStudentDetail']);
+Route::post('/Mahasiswa/Update/', [BerandaController::class, 'update']);
 
 Route::get('/Admin', [AdminController::class, 'index']);
-Route::post('/Admin', [AdminController::class, 'store']);
+Route::post('/Admin', [AdminController::class, 'storeAccount']);
 Route::get('/Admin/{id}', [AdminController::class, 'detail']);
-Route::post('/Admin/{id}/Update', [AdminController::class, 'update']);
+Route::post('/Admin/{id}/Update', [AdminController::class, 'updateAccount']);
 Route::delete('/Admin/{id}/Hapus', [AdminController::class, 'delete']);
-
-Route::get('/DataMahasiswa', [DataMahasiswaController::class, 'index']);
-Route::get('/DataMahasiswa/CreateDataMahasiswa', [DataMahasiswaController::class, 'create']);
-Route::post('/DataMahasiswa', [DataMahasiswaController::class, 'store']);
-

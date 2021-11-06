@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'students',
+        'passwords' => 'accounts',
         // 'passwords' => 'users',
     ],
 
@@ -39,7 +39,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'students',
+            'provider' => 'accounts',
             // 'provider' => 'users',
         ],
     ],
@@ -63,14 +63,14 @@ return [
 
     'providers' => [
         
-        'students' => [
+        'accounts' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Student::class,
+            'model' => App\Models\Account::class,
         ],
 
-        'students' => [
+        'accounts' => [
             'driver' => 'database',
-            'table' => 'students',
+            'table' => 'accounts',
         ],
         
         // 'users' => [

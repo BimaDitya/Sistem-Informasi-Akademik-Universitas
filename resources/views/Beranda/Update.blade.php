@@ -30,34 +30,16 @@
               <form action="/Admin/{{ $Mhs->id }}/Update" method="POST">
                   @csrf
                     <div class="mb-1">
-                      <input type="number" name="nim" class="form-control" id="nim" placeholder="Nomor Induk Mahasiswa">
-                      <p class="text-muted">Data Sebelumnya: {{ $Mhs->nim }}</p>
+                      <input type="number" name="nim" class="form-control" id="nim" placeholder="Nomor Induk Mahasiswa" value="{{ $Mhs->nim }}">
                     </div>
                     <div class="row mb-1">
                       <div class="col">
-                        <input type="text" name="nama_depan" class="form-control" placeholder="Nama Depan" aria-label="Nama Depan Mahasiswa">
-                        <p class="text-muted">Data Sebelumnya: {{ $Mhs->nama_depan }}</p>
+                        <input type="text" name="nama_depan" class="form-control" placeholder="Nama Depan" aria-label="Nama Depan Mahasiswa" value="{{ $Mhs->nama_depan }}">
                       </div>
                       <div class="col">
-                        <input type="text" name="nama_belakang" class="form-control" placeholder="Nama Belakang" aria-label="Nama Belakang Mahasiswa">
-                        <p class="text-muted">Data Sebelumnya: {{ $Mhs->nama_belakang }}</p>
+                        <input type="text" name="nama_belakang" class="form-control" placeholder="Nama Belakang" aria-label="Nama Belakang Mahasiswa" value="{{ $Mhs->nama_belakang }}">
                       </div>
                     </div>
-                    <select name="jenis_kelamin" class="form-select form-control-lg" aria-label="Jenis Kelamin" >
-                      <option selected>Jenis Kelamin:</option>
-                      <option value="Laki-Laki">Laki-Laki</option>
-                      <option value="Perempuan">Perempuan</option>
-                    </select>
-                    <p class="text-muted">Data Sebelumnya: {{ $Mhs->jenis_kelamin }}</p>
-                    <select name="agama" class="form-select mb-1" aria-label="Agama">
-                      <option selected>Agama:</option>
-                      <option value="Islam">Islam</option>
-                      <option value="Kristen">Kristen</option>
-                      <option value="Nasrani">Nasrani</option>
-                      <option value="Hindu">Hindu</option>
-                      <option value="Budha">Budha</option>
-                    </select>
-                    <p class="text-muted">Data Sebelumnya: {{ $Mhs->agama }}</p>
                     <div class="mb-3">
                       <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                     </div>

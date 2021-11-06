@@ -2,8 +2,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
 
 html, body {
-  height: 100vh;
-  background: linear-gradient(0deg, rgba(51,153,255,1) 0%, rgba(230,242,255,1) 100%);
+  height: auto;
+  background: linear-gradient(0deg, rgba(51, 153, 255, 1) 0%, rgba(230, 242, 255, 1) 100%) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   color: #004080;
   font-family: 'Nunito', sans-serif;
 }

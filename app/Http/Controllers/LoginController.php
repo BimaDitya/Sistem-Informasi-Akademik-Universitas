@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -27,7 +26,7 @@ class LoginController extends Controller
             $request->session();
             return redirect()->intended('/Beranda');
         }
-        return back()->with('Gagal', 'Login Gagal, Periksa Lagi');
+        return back()->with('Gagal', 'Login Gagal, Periksa Kembali');
     }
 
     public function logoutMahasiswa(Request $request)

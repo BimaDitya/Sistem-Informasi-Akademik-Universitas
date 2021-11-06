@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePenggunasTable extends Migration
+class CreateAccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreatePenggunasTable extends Migration
      */
     public function up()
     {
-        Schema::create('penggunas', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->id();
-            $table->string('nama');
-            $table->char('nim', 11);
+            $table->id('id');
+            $table->char('nim')->unique();
+            $table->string('nama_depan');
+            $table->string('nama_belakang');
             $table->string('password');
-            $table->timestamps();
+            $table->rememberToken();
         });
     }
 
@@ -30,6 +31,6 @@ class CreatePenggunasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('penggunas');
+        Schema::dropIfExists('accounts');
     }
 }
