@@ -3,16 +3,16 @@
 namespace App\Models;
 
 use App\Models\Account;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class School extends Model
 {
     use HasFactory;
-
+    
     protected $guarded = ['id'];
 
-    protected $table = 'students';
+    protected $table = 'schools';
 
     public $timestamps = false;
 

@@ -29,13 +29,13 @@
                     </div>
                     <div class="card-body">
                         <a href="/Mahasiswa/Detail" class="btn btn-primary col-2">Kembali</a>
-                        <form action="/Mahasiswa/Update/" method="POST">
+                        <form action="/Mahasiswa/Update/Student" method="POST">
                             @csrf
                             {{-- Input --}}
                             <label for="Nama" class="col-sm-4 col-form-label text-start">Tempat & Tgl. Lahir</label>
                             <div class="input-group">
                                 <input type="text" name="tempat_lahir" aria-label="Tempat Lahir" class="form-control"
-                                    value="{{ $Data->student->tempat_lahir ?? '' }}">
+                                    value="{{ $Data->student->tempat_lahir ?? '' }}" placeholder="Contoh: Kebon Jeruk">
                                 <input type="date" name="tanggal_lahir" aria-label="Tanggal Lahir" class="form-control"
                                     value="{{ $Data->student->tanggal_lahir ?? '' }}">
                             </div>

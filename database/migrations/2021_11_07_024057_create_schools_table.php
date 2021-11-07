@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentsTable extends Migration
+class CreateSchoolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateStudentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->id('id');
+        Schema::create('schools', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('account_id');
             $table->foreign('account_id')->references('id')->on('accounts');
-            $table->string('agama')->nullable();
-            $table->string('tempat_lahir')->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->string('jenis_kelamin')->nullable();
-            $table->string('jalur_penerimaan')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->string('kabupaten')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('sekolah')->nullable();
         });
     }
 
@@ -33,6 +31,6 @@ class CreateStudentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('schools');
     }
 }

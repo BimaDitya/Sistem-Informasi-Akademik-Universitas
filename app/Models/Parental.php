@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\Account;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use App\Models\Account;
 
-class Student extends Model
+class Parental extends Model
 {
     use HasFactory;
 
+    protected $table = 'parents';
+
     protected $guarded = ['id'];
-
-    protected $table = 'students';
-
+    
     public $timestamps = false;
 
     public function account()
