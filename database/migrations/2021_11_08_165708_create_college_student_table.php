@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountsTable extends Migration
+class CreateCollegeStudentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
+        Schema::create('college_student', function (Blueprint $table) {
             $table->id('id');
-            $table->char('nim');
-            $table->string('nama_depan');
-            $table->string('nama_belakang');
-            $table->string('password');
-            $table->rememberToken();
+            $table->integer('college_id');
+            $table->integer('student_id');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +28,6 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('college_student');
     }
 }

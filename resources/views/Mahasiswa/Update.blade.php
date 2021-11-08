@@ -28,7 +28,7 @@
                         Update Data Mahasiswa
                     </div>
                     <div class="card-body">
-                        <a href="/Mahasiswa/Detail" class="btn btn-primary col-2">Kembali</a>
+                        <a href="/Mahasiswa/Detail" class="btn btn-primary col-4">Kembali</a>
                         <form action="/Mahasiswa/Update/Student" method="POST">
                             @csrf
                             {{-- Input --}}
@@ -72,7 +72,7 @@
                                 </select>
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-success col-2">Update</button>
+                                <button type="submit" class="btn btn-success col-4">Update</button>
                             </div>
                         </form>
                     </div>

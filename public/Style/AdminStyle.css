@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+html, body {
+  height: auto;
+  background: linear-gradient(0deg, rgba(239, 248, 248, 1) 0%, rgba(224, 241, 241, 1) 50%, rgba(208, 233, 233, 1) 100%) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #004080;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* My Custom Class */
+.login-heading-font {
+  font-family: 'Lobster', cursive;
+}
+
+.azure-color-01 {
+  color: #3399FF;
+}
+
+.azure-color-08 {
+  color: #E6F2FF;
+}
+/* My Custom Class */
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  border-color: #73808D;
+}
+
+.form-signin input[type="password"] {
+  border-color: #73808D;
+}

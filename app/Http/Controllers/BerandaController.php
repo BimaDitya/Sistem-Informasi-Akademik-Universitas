@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use App\Models\Address;
+use App\Models\College;
 use App\Models\Parental;
 use App\Models\Student;
 use App\Models\School;
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class BerandaController extends Controller
 {
     // Biodata Mahasiswa
-    public function storeStudent(Request $request)
+    public function storeStudent(Request $request, College $id)
     {
         $storeStudent = $request->validate([
             'agama' => 'required|max:10',
@@ -23,9 +24,16 @@ class BerandaController extends Controller
             'jalur_penerimaan' => 'required',
         ]);
 
-        $storeStudent['account_id'] = auth()->user()->id;
-
-        Student::create($storeStudent);
+        $storeStudent ['account_id'] = auth()->user()->id;
+        
+        $storeStudent = new Student;
+        $storeStudent -> account_id = auth()->user()->id;
+        $storeStudent -> agama = $request -> agama;
+        $storeStudent -> tempat_lahir = $request -> tempat_lahir;
+        $storeStudent -> tanggal_lahir = $request -> tanggal_lahir;
+        $storeStudent -> jenis_kelamin = $request -> jenis_kelamin;
+        $storeStudent -> jalur_penerimaan = $request -> jalur_penerimaan;
+        $storeStudent -> save();
 
         return redirect('/Mahasiswa/Detail/')->with('Berhasil', 'Data Berhasil Disimpan');
     }
@@ -190,6 +198,13 @@ class BerandaController extends Controller
         Auth::user()->id;
         return view ('Mahasiswa.UpdateParent', ['Title' => 'Mahasiswa'])->with('Data',$Data);
     }
+
+    // Kuliah & Kuliah
+    public function detailCollege()
+    {
+        Auth::user()->id;
+        return view('Kuliah.Index', ['Title' => 'Perkuliahan']);
+    }
     
     // Passing Data
     public function detailStudent()
@@ -202,5 +217,12 @@ class BerandaController extends Controller
     {
         Auth::user()->id;
         return view('Beranda.Index', ['Title' => 'Beranda']);
+    }
+
+    // KRS
+    public function detailKRS() 
+    {
+        Auth::user()->id;
+        return view('KRS.Index', ['Title' => 'KRS']);
     }
 }

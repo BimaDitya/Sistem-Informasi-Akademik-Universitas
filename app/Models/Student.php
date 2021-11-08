@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Account;
+use App\Models\College;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -19,5 +20,10 @@ class Student extends Model
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function college()
+    {
+        return $this->belongsToMany(College::class);
     }
 }

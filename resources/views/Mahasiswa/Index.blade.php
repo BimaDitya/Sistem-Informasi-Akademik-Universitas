@@ -4,64 +4,44 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {{-- Bootstrap Core CSS --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    {{-- CSS Custom Style --}}
     <link rel="stylesheet" href="/Style/Mystyle.css">
-    <title>SINIKAD | {{ $Title }}</title>
+
+    <title>Mahasiswa | {{ $Title }}</title>
+
+    @include('Partials.Icons')
 </head>
 
 <body>
     {{-- Navbar --}}
     <header>
-        <nav class="navbar navbar-expand navbar-dark shadow-sm" style="background-color: #3399FF">
-            <div class="container">
-                <a class="navbar-brand">Selamat Datang, {{ auth()->user()->nama_depan }}</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarText">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin">Data Mahasiswa</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/MataKuliah">Mata Kuliah & Jadwal</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/KRS">Kartu Rencana Studi</a>
-                        </li>
-                    </ul>
-                    <span class="navbar-text">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <form action="/Logout" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-light fw-bold"><i
-                                            class="ph-arrow-bend-down-right-bold align-middle pe-3"></i>Logout</button>
-                                </form>
-                            </li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
-        </nav>
+        @include('Partials.Navbar')
     </header>
 
     {{-- Content --}}
     <main>
         <!--Biodata Mahasiswa-->
         <div class="row h-100 justify-content-center py-4 px-2">
-            {{-- Notify --}}
-            @if (session('Berhasil'))
-            <div class="alert alert-success alert-dismissible fade show col-7" role="alert">
-                {{ session('Berhasil') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
             {{-- Biodata Mahasiswa --}}
             <div class="col-7">
+                {{-- Notify --}}
+                @if (session('Berhasil'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('Berhasil') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
+                    Gagal Menyimpan Data
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <div class="card shadow-sm">
                     <div class="card-header text-center">
                         Biodata Mahasiswa
@@ -125,7 +105,8 @@
                             </div>
                             @if ($Data->student == "")
                             <div>
-                                <button type="submit" class="btn btn-success my-2 col-2">Simpan</button>
+                                <button type="submit" class="btn btn-success my-2 col-2"
+                                    data-bs-toggle="modal">Simpan</button>
                                 <a href="/Mahasiswa/Update/Biodata"
                                     class="btn btn-secondary my-4 col-2 disabled">Update</a>
                             </div>
@@ -254,26 +235,30 @@
                                         <div class="card-body">
                                             <label for="Nama" class="col-sm-6 col-form-label text-start">Nama</label>
                                             <div class="input-group">
-                                                <input type="text" name="nama_ibu" aria-label="Nama" class="form-control"
-                                                    value="{{ $Data->parent->nama_ibu ?? '' }}" placeholder="Contoh: Siti Aminah">
+                                                <input type="text" name="nama_ibu" aria-label="Nama"
+                                                    class="form-control" value="{{ $Data->parent->nama_ibu ?? '' }}"
+                                                    placeholder="Contoh: Siti Aminah">
                                             </div>
-                                            <label for="Tempat Lahir"
-                                                class="col-sm-6 col-form-label text-start">Tempat Lahir</label>
+                                            <label for="Tempat Lahir" class="col-sm-6 col-form-label text-start">Tempat
+                                                Lahir</label>
                                             <div class="input-group">
                                                 <input type="text" name="tempat_ibu" aria-label="Tempat Lahir"
-                                                    class="form-control" value="{{ $Data->parent->tempat_ibu ?? '' }}" placeholder="Contoh: Kebon Jeruk">
+                                                    class="form-control" value="{{ $Data->parent->tempat_ibu ?? '' }}"
+                                                    placeholder="Contoh: Kebon Jeruk">
                                             </div>
                                             <label for="Tanggal Lahir"
                                                 class="col-sm-6 col-form-label text-start">Tanggal Lahir</label>
                                             <div class="input-group">
                                                 <input type="date" name="tanggal_ibu" aria-label="Tanggal Lahir"
-                                                    class="form-control" value="{{ $Data->parent->tanggal_ibu ?? '' }}" placeholder="Contoh: YYYY-MM-DD">
+                                                    class="form-control" value="{{ $Data->parent->tanggal_ibu ?? '' }}"
+                                                    placeholder="Contoh: YYYY-MM-DD">
                                             </div>
-                                            <label for="No. Telepon"
-                                                class="col-sm-6 col-form-label text-start">No. Telepon</label>
+                                            <label for="No. Telepon" class="col-sm-6 col-form-label text-start">No.
+                                                Telepon</label>
                                             <div class="input-group">
                                                 <input type="number" name="no_ibu" aria-label="No. Telepon"
-                                                    class="form-control" value="{{ $Data->parent->no_ibu ?? '' }}" placeholder="Contoh: 0822-3072-XXXX">
+                                                    class="form-control" value="{{ $Data->parent->no_ibu ?? '' }}"
+                                                    placeholder="Contoh: 0822-3072-XXXX">
                                             </div>
                                         </div>
                                     </div>
@@ -286,26 +271,30 @@
                                         <div class="card-body">
                                             <label for="Nama" class="col-sm-6 col-form-label text-start">Nama</label>
                                             <div class="input-group">
-                                                <input type="text" name="nama_ayah" aria-label="Nama" class="form-control"
-                                                    value="{{ $Data->parent->nama_ayah ?? '' }}" placeholder="Contoh: Abdullah">
+                                                <input type="text" name="nama_ayah" aria-label="Nama"
+                                                    class="form-control" value="{{ $Data->parent->nama_ayah ?? '' }}"
+                                                    placeholder="Contoh: Abdullah">
                                             </div>
-                                            <label for="Tempat Lahir"
-                                                class="col-sm-6 col-form-label text-start">Tempat Lahir</label>
+                                            <label for="Tempat Lahir" class="col-sm-6 col-form-label text-start">Tempat
+                                                Lahir</label>
                                             <div class="input-group">
                                                 <input type="text" name="tempat_ayah" aria-label="Tempat Lahir"
-                                                    class="form-control" value="{{ $Data->parent->tempat_ayah ?? '' }}" placeholder="Contoh: Kebon Jeruk">
+                                                    class="form-control" value="{{ $Data->parent->tempat_ayah ?? '' }}"
+                                                    placeholder="Contoh: Kebon Jeruk">
                                             </div>
                                             <label for="Tanggal Lahir"
                                                 class="col-sm-6 col-form-label text-start">Tanggal Lahir</label>
                                             <div class="input-group">
                                                 <input type="date" name="tanggal_ayah" aria-label="Tanggal Lahir"
-                                                    class="form-control" value="{{ $Data->parent->tanggal_ayah ?? '' }}" placeholder="Contoh: YYYY-MM-DD">
+                                                    class="form-control" value="{{ $Data->parent->tanggal_ayah ?? '' }}"
+                                                    placeholder="Contoh: YYYY-MM-DD">
                                             </div>
-                                            <label for="No. Telepon"
-                                                class="col-sm-6 col-form-label text-start">No. Telepon</label>
+                                            <label for="No. Telepon" class="col-sm-6 col-form-label text-start">No.
+                                                Telepon</label>
                                             <div class="input-group">
                                                 <input type="number" name="no_ayah" aria-label="No. Telepon"
-                                                    class="form-control" value="{{ $Data->parent->no_ayah ?? '' }}" placeholder="Contoh: 0822-3072-XXXX">
+                                                    class="form-control" value="{{ $Data->parent->no_ayah ?? '' }}"
+                                                    placeholder="Contoh: 0822-3072-XXXX">
                                             </div>
                                         </div>
                                     </div>
@@ -313,14 +302,14 @@
                             </div>
                             @if ($Data->parent == "")
                             <div>
-                                <button type="submit" class="btn btn-success my-2 col-2">Simpan</button>
+                                <button type="submit" class="btn btn-success my-3 col-2">Simpan</button>
                                 <a href="/Mahasiswa/Update/OrangTua"
-                                    class="btn btn-secondary my-4 col-2 disabled">Update</a>
+                                    class="btn btn-secondary my-3 col-2 disabled">Update</a>
                             </div>
                             @else
                             <div>
-                                <button type="submit" class="btn btn-secondary my-2 col-2 disabled">Simpan</button>
-                                <a href="/Mahasiswa/Update/OrangTua" class="btn btn-primary my-4 col-2">Update</a>
+                                <button type="submit" class="btn btn-secondary my-3 col-2 disabled">Simpan</button>
+                                <a href="/Mahasiswa/Update/OrangTua" class="btn btn-primary my-3 col-2">Update</a>
                             </div>
                             @endif
                         </div>

@@ -14,7 +14,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Custom Style -->
-    <link href="Style/AdminStyle.css" rel="stylesheet">
+    <link href="{{ asset ('Style/AdminStyle.css') }}" rel="stylesheet">
 
     {{-- Icon --}}
     <script src="https://unpkg.com/phosphor-icons"></script>
@@ -32,7 +32,7 @@
         <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">Daftar Mahasiswa</button>
+                    type="button" role="tab" aria-controls="pills-home" aria-selected="true">Daftar Perkuliahan</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
@@ -42,28 +42,35 @@
         {{-- Tab --}}
         {{-- Content --}}
         <div class="tab-content" id="pills-tabContent">
-            {{-- Data Mahasiswa --}}
+            {{-- Data Perkuliahan --}}
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <table class="table table-sm table-hover table-bordered border-primary shadow-sm">
                     <tr class="table-primary text-center">
-                        <th>Nomor Induk Mahasiswa</th>
-                        <th>Nama Depan</th>
-                        <th>Nama Belakang</th>
+                        <th>Kode</th>
+                        <th>Kelas</th>
+                        <th>Nama Matakuliah</th>
+                        <th>Dosen Pengampu</th>
+                        <th>Hari</th>
+                        <th>Ruang</th>
                         <th>Perintah</th>
                     </tr>
-                    @foreach ($Mhs as $Mhs)
+                    @foreach ($Clg as $Clg)
                     <tr class="table-light text-center align-middle">
-                        <td>{{ $Mhs->nim}}</td>
-                        <td>{{ $Mhs->nama_depan }}</td>
-                        <td>{{ $Mhs->nama_belakang }}</td>
+                        <td>{{ $Clg->kode ?? ''}}</td>
+                        <td>{{ $Clg->kelas ?? ''}}</td>
+                        <td>{{ $Clg->matakuliah }}</td>
+                        <td>{{ $Clg->dosen ?? ''}}</td>
+                        <td>{{ $Clg->hari ?? ''}}</td>
+                        <td>{{ $Clg->ruang ?? ''}}</td>
                         <td>
                             <div class="row justify-content-center">
                                 <div class="col-4">
-                                    <a href="/Admin/Mahasiswa" class="btn btn-outline-info btn-lg text-decoration-none">
+                                    <a href="/Admin/Perkuliahan/Detail"
+                                        class="btn btn-outline-info btn-lg text-decoration-none">
                                         <i class="ph-pencil-light align-middle"></i>
                                     </a>
                                 </div>
-                                <form action="/Admin/Mahasiswa/Hapus" class="col-4" method="POST">
+                                <form action="/Admin/Perkuliahan/Hapus" class="col-4" method="POST">
                                     @method('DELETE')
                                     @csrf
                                     <button class="btn btn-outline-danger btn-lg"
@@ -91,35 +98,45 @@
             </div>
             {{-- Tambah Data --}}
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                {{-- Personal Data --}}
-                <div class="card">
-                    <div class="card-header text-center">
-                        Data Mahasiswa
-                    </div>
-                    <div class="card-body shadow-sm">
-                        <form method="POST" action="/Admin">
-                            @csrf
-                            <div class="mb-2">
-                                <input type="number" name="nim" class="form-control" id="nim"
-                                    placeholder="Nomor Induk Mahasiswa">
+                {{-- College Data --}}
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                Data Perkuliahan
                             </div>
-                            <div class="row mb-2">
-                                <div class="col">
-                                    <input type="text" name="nama_depan" class="form-control" placeholder="Nama Depan"
-                                        aria-label="Nama Depan Mahasiswa">
-                                </div>
-                                <div class="col">
-                                    <input type="text" name="nama_belakang" class="form-control"
-                                        placeholder="Nama Belakang" aria-label="Nama Belakang Mahasiswa">
-                                </div>
+                            <div class="card-body shadow-sm">
+                                <form method="POST" action="/Admin/Perkuliahan">
+                                    @csrf
+                                    <div class="mb-2">
+                                        <input type="text" name="kode" class="form-control" id="kode"
+                                            placeholder="Kode | Cth. 123456" value="{{ old('kode') }}">
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="text" name="kelas" class="form-control" id="kelas"
+                                            placeholder="Kelas | Cth. PTI19B" value="{{ old('kelas') }}">
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="text" name="matakuliah" class="form-control" id="matakuliah"
+                                            placeholder="Nama Matakuliah" value="{{ old('matakuliah') }}">
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="text" name="dosen" class="form-control" id="dosen"
+                                            placeholder="Dosen Pangampu" value="{{ old('dosen') }}">
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="text" name="hari" class="form-control" id="hari" placeholder="Hari"
+                                            value="{{ old('hari') }}">
+                                    </div>
+                                    <div class="mb-2">
+                                        <input type="text" name="ruang" class="form-control" id="ruang"
+                                            placeholder="Ruang | Cth. A10.19.01" value="{{ old('ruang') }}">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                                    <input class="btn btn-secondary" type="reset" value="Kosongkan">
+                                </form>
                             </div>
-                            <div class="mb-2">
-                                <input type="password" name="password" class="form-control" id="password"
-                                    placeholder="Password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan Data</button>
-                            <input class="btn btn-secondary" type="reset" value="Kosongkan">
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -9,52 +9,62 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    public function create()
-    {
-        return view('Admin.Index', ['Title' => 'Admin']);
-    }
-    
+    // Mahasiswa
     public function storeAccount(Request $request)
     {
         $storeAccount = $request->validate([
-            'nim' => 'required|min:11|max:11',
-            'nama_depan' => 'required',
-            'nama_belakang' => 'required',
-            'password' => 'required|min:8|max:255',
+            "nim" => "required|min:11|max:11",
+            "password" => "required",
+            "nama_depan" => "required",
+            "nama_belakang" => "required",
         ]);
 
-        $storeAccount['password'] = Hash::make($storeAccount['password']);
+        $storeAccount = new Account;
+        $storeAccount -> nim = $request->nim;
+        $storeAccount -> nama_depan = $request->nama_depan;
+        $storeAccount -> nama_belakang = $request->nama_belakang;
+        $storeAccount -> password = Hash::make($request->password);
+        $storeAccount ->save();
 
-        Account::create($storeAccount);
-
-        return redirect('/Admin')->with('Berhasil', 'Data Berhasil Disimpan');
+        if($storeAccount) {
+            return redirect('/Admin')->with('Berhasil', 'Data Berhasil Disimpan');
+        }
     }
 
     public function index() 
     {
         $Mhs = Account::all();
-        return view('Admin.Index', ['Title' => 'Admin', 'Mhs' => $Mhs]);
+        return view('Admin.Index', ['Title' => 'Mahasiswa', 'Mhs' => $Mhs]);
     }
 
-    public function detail($id)
+    public function detail(Account $id)
     {
-        $Mhs = Account::find($id);
-        return view('Beranda.Update', ['Title' => 'Update', 'Mhs' => $Mhs]);
+        $Mhs = Account::find(count(array($id)));
+        return view('Admin.Update', ['Title' => 'Update', 'Mhs' => $Mhs]);
     }
 
-    public function updateAccount(Request $request, $id)
+    public function updateAccount(Request $request, Account $id)
     {
-        $store = Account::find($id);
-        $store -> nim = $request->nim;
-        $store -> nama_depan = $request->nama_depan;
-        $store -> nama_belakang = $request->nama_belakang;
-        $store -> password = Hash::make($request->password);
-        $store ->save();
-        
-        return redirect('/Admin')->with('Berhasil', 'Data Berhasil Diperbarui');
+        $updateAccount = $request->validate([
+            "nim" => "required|min:11|max:11",
+            "password" => "required",
+            "nama_depan" => "required",
+            "nama_belakang" => "required",
+        ]);
+
+        $updateAccount = Account::find(count(array($id)));
+        $updateAccount -> nim = $request->nim;
+        $updateAccount -> nama_depan = $request->nama_depan;
+        $updateAccount -> nama_belakang = $request->nama_belakang;
+        $updateAccount -> password = Hash::make($request->password);
+        $updateAccount ->save();
+
+        if ($updateAccount) {
+            return redirect('/Admin') -> with('Berhasil', 'Data Berhasil Diperbarui');
+        }
     }
 
-    public function delete($id)
+    public function delete(Account $id)
     {
         $Mhs = Account::find($id);
         $Mhs->delete();
