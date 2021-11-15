@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\GradesController;
 use App\Http\Controllers\BerandaController;
-use App\Models\Course;
 use App\Models\Grades;
 use App\Models\Payment;
 
@@ -66,6 +64,7 @@ Route::get('/Admin/Transkrip/{Grades}', [AdminController::class, 'detailGrades',
 Route::post('/Admin/Transkrip/Update/{Grades}', [AdminController::class, 'updateGrades', function(Grades $Grades){
 	return $Grades; }]);
 Route::delete('/Admin/Transkrip/Hapus/{id}', [AdminController::class, 'deleteGrades']);
+
 // Pembaayaran UKT
 Route::get('/Admin/Pembayaran/', [AdminController::class, 'readPayment']);
 Route::post('/Admin/Pembayaran/', [AdminController::class, 'storePayment']);

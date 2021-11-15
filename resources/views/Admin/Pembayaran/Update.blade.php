@@ -23,77 +23,53 @@
         <div class="col-lg-6 vertical-center">
             <div class="card shadow">
                 <div class="card-header text-center fw-bold highlight-font">
-                    Ubah Data Perkuliahan
+                    Ubah Data Pemabayaran
                 </div>
                 <div class="card-body">
-                    <a href="/Admin/Transkrip" class="btn btn-primary">Kembali</a>
-                    <form method="POST" action="/Admin/Transkrip/Update/{{ $Grades->id }}">
+                    <a href="/Admin/Pembayaran" class="btn btn-primary">Kembali</a>
+                    <form method="POST" action="/Admin/Pembayaran/Update/{{ $Payment->id }}">
                         @csrf
-                        <div class="mb-1">
-                            <label for="matakuliah" class="col-sm-4 col-form-label text-start">Nama
-                                Matakuliah</label>
-                            <select class="form-select" name="course_id">
-                                <option value="">Pilih Matakuliah</option>
-                                @foreach ($Courses as $Item)
-                                <option value="{{ $Item->id }}" {{ old('course_id', $Grades->course_id)==$Item->id ? 'selected' : null}}>{{ $Item->matakuliah }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="mb-1">
                             <label for="nim" class="col-sm-4 col-form-label text-start">Nomor Induk
                                 Mahasiswa</label>
                             <select class="form-select" name="account_id">
                                 <option value="">Pilih Nomor Induk Mahasiswa</option>
                                 @foreach ($Accounts as $Item)
-                                <option value="{{ $Item->id }}" {{ old('account_id', $Grades->account_id)==$Item->id ? 'selected' : null}}>{{ $Item->nim }}
+                                <option value="{{ $Item->id }}" {{ old('account_id', $Payment->account_id)==$Item->id ? 'selected' : null}}>{{ $Item->nim }}
                                 </option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-2">
-                            <label for="sks" class="col-sm-5 col-form-label text-start">Satuan Kredit
-                                Semester</label>
-                            <input type="number" name="sks" class="form-control" id="sks" placeholder="Contoh: 3" value="{{ old('sks', $Grades->sks) }}">
+                        <div class="mb-1">
+                            <label for="tahun" class="col-sm-4 col-form-label text-start">Tahun Ajaran</label>
+                            <input type="text" name="tahun" class="form-control" id="tahun" placeholder="Contoh: 2019/2020 Gasal"
+                                value="{{ old('tahun', $Payment->tahun) }}">
                         </div>
-                        <div class="row mb-2">
+                        <div class="row mb-3">
                             <div class="col">
-                                <label for="nilai" class="col-sm-6 col-form-label text-start">Nilai
-                                    Matakuliah</label>
-                                <select class="form-select" name="nilai">
-                                    <option value=""></option>
-                                    <option value="A" {{ old('nilai', $Grades->nilai)=="A" ? 'selected' : null}}>A</option>
-                                    <option value="A-" {{ old('nilai', $Grades->nilai)=="A-" ? 'selected' : null}}>A-</option>
-                                    <option value="B+" {{ old('nilai', $Grades->nilai)=="B+" ? 'selected' : null}}>B+</option>
-                                    <option value="B" {{ old('nilai', $Grades->nilai)=="B" ? 'selected' : null}}>B</option>
-                                    <option value="B-" {{ old('nilai', $Grades->nilai)=="B-" ? 'selected' : null}}>B-</option>
-                                    <option value="C+" {{ old('nilai', $Grades->nilai)=="C+" ? 'selected' : null}}>C+</option>
-                                    <option value="C" {{ old('nilai', $Grades->nilai)=="C" ? 'selected' : null}}>C</option>
-                                    <option value="C-" {{ old('nilai', $Grades->nilai)=="C-" ? 'selected' : null}}>C-</option>
-                                    <option value="D" {{ old('nilai', $Grades->nilai)=="D" ? 'selected' : null}}>D</option>
-                                    <option value="E" {{ old('nilai', $Grades->nilai)=="E" ? 'selected' : null}}>E</option>
+                                <label for="nominal" class="col-lg-8 col-form-label text-start">Tentukan Nominal UKT</label>
+                                <select class="form-select" name="nominal">
+                                    <option value="">Tentukan Nominal</option>
+                                    <option value="500000" {{ old('nominal', $Payment->nominal)=="500000;" ? 'selected' : null}}>Rp. 500.000</option>
+                                    <option value="1000000" {{ old('nominal', $Payment->nominal)=="1000000" ? 'selected' : null}}>Rp. 1.000.000</option>
+                                    <option value="2400000" {{ old('nominal', $Payment->nominal)=="2400000" ? 'selected' : null}}>Rp. 2.400.000</option>
+                                    <option value="3800000" {{ old('nominal', $Payment->nominal)=="3800000" ? 'selected' : null}}>Rp. 3.800.000</option>
+                                    <option value="5200000" {{ old('nominal', $Payment->nominal)=="5200000" ? 'selected' : null}}>Rp. 5.200.000</option>
+                                    <option value="6500000" {{ old('nominal', $Payment->nominal)=="6500000" ? 'selected' : null}}>Rp. 6.500.000</option>
+                                    <option value="7900000" {{ old('nominal', $Payment->nominal)=="7900000" ? 'selected' : null}}>Rp. 7.900.000</option>
+                                    <option value="9300000" {{ old('nominal', $Payment->nominal)=="9300000" ? 'selected' : null}}>Rp. 9.300.000</option>
                                 </select>
                             </div>
                             <div class="col">
-                                <label for="indeks" class="col-sm-6 col-form-label text-start">Indeks
-                                    Matakuliah</label>
-                                <select class="form-select" name="indeks">
-                                    <option value=""></option>
-                                    <option value="4.00" {{ old('indeks', $Grades->indeks)=="4.00" ? 'selected' : null}}>4.00</option>
-                                    <option value="3.75" {{ old('indeks', $Grades->indeks)=="3.75" ? 'selected' : null}}>3.75</option>
-                                    <option value="3.50" {{ old('indeks', $Grades->indeks)=="3.50" ? 'selected' : null}}>3.50</option>
-                                    <option value="3.00" {{ old('indeks', $Grades->indeks)=="3.00" ? 'selected' : null}}>3.00</option>
-                                    <option value="2.75" {{ old('indeks', $Grades->indeks)=="2.75" ? 'selected' : null}}>2.75</option>
-                                    <option value="2.50" {{ old('indeks', $Grades->indeks)=="2.50" ? 'selected' : null}}>2.50</option>
-                                    <option value="2.25" {{ old('indeks', $Grades->indeks)=="2.25" ? 'selected' : null}}>2.25</option>
-                                    <option value="2.00" {{ old('indeks', $Grades->indeks)=="2.00" ? 'selected' : null}}>2.00</option>
-                                    <option value="1.00" {{ old('indeks', $Grades->indeks)=="1.00" ? 'selected' : null}}>1.00</option>
-                                    <option value="0" {{ old('indeks', $Grades->indeks)=="0" ? 'selected' : null}}>0</option>
+                                <label for="status" class="col-lg-6 col-form-label text-start">Status Pembayaran</label>
+                                <select class="form-select" name="status">
+                                    <option value="">Tentukan Status Pembayaran</option>
+                                    <option value="L" {{ old('status', $Payment->status)=="L" ? 'selected' : null}}>Lunas</option>
+                                    <option value="BL" {{ old('status', $Payment->status)=="BL" ? 'selected' : null}}>Belum Lunas</option>
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan Data</button>
-                        <button class="btn btn-secondary" type="reset">Hapus</button>
+                        <button type="submit" class="btn btn-success">Update Data</button>
                     </form>
                 </div>
             </div>

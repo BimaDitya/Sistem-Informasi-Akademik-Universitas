@@ -35,7 +35,7 @@ class AdminController extends Controller
     }
     public function readAccount()
     {
-        $Accounts = Account::all();
+        $Accounts = Account::all()->sortBy('nim', false);
         return view('Admin.Mahasiswa.Index', compact('Accounts'), ['Title' => 'Mahasiswa']);
     }
     public function detailAccount(Account $id)
@@ -143,11 +143,11 @@ class AdminController extends Controller
         $storeGrades->sks = $request->sks;
         $storeGrades->save();
 
-        return redirect('/Admin/Transkrip')->with('Berhasil', 'Data Berhasil Diperbarui');
+        return redirect('/Admin/Transkrip')->with('Berhasil', 'Data Berhasil Simpan');
     }
     public function readGrades()
     {
-        $Grades = Grades::all();
+        $Grades = Grades::all()->sortBy('account.nim', false);
         $Courses = Course::all();
         $Accounts = Account::all();
         return view('Admin.Transkrip.Index', compact('Grades', 'Courses', 'Accounts'), ['Title' => 'Transkrip Nilai']);
@@ -189,7 +189,56 @@ class AdminController extends Controller
     // Pembayaran
     public function readPayment()
     {
-        $Payments = Payment::all();
-        return view('Admin.Mahasiswa.Index', compact('Accounts'), ['Title' => 'Mahasiswa']);
+        $Payments = Payment::all()->sortBy('account.nim', false);
+        $Accounts = Account::all();
+        return view('Admin.Pembayaran.Index', compact('Payments', 'Accounts'), ['Title' => 'Pembayaran UKT']);
+    }
+    public function storePayment(Request $request)
+    {
+        $storePayment = $request->validate([
+            "account_id" => "required",
+            "nominal" => "required",
+            "status" => "required",
+            "tahun" => "required",
+        ]);
+
+        $storePayment = new Payment;
+        $storePayment->account_id = $request->account_id;
+        $storePayment->nominal = $request->nominal;
+        $storePayment->status = $request->status;
+        $storePayment->tahun = $request->tahun;
+        $storePayment->save();
+
+        return redirect('/Admin/Pembayaran/')->with('Berhasil', 'Data Berhasil Simpan');
+    }
+    public function detailPayment(Payment $Payment)
+    {
+        $Accounts = Account::all();
+        return view('Admin.Pembayaran.Update', compact('Payment', 'Accounts'), ['Title' => 'Update']);
+    }
+    public function updatePayment(Request $request, Payment $Payment)
+    {
+        // This Function Use Route Model Binding For Assigments
+
+        $request->validate([
+            "account_id" => "required",
+            "nominal" => "required",
+            "status" => "required",
+            "tahun" => "required",
+        ]);
+
+        $Payment -> account_id = $request->account_id;
+        $Payment -> nominal = $request->nominal;
+        $Payment -> status = $request->status;
+        $Payment -> tahun = $request->tahun;
+        $Payment -> save();
+
+        return redirect('/Admin/Pembayaran')->with('Berhasil', 'Data Berhasil Diperbarui');
+    }
+    public function deletePayment(Payment $id)
+    {
+        $Payment = Payment::find($id)->first();
+        $Payment->delete();
+        return back()->with('Berhasil', 'Data Berhasil Dihapus');
     }
 }

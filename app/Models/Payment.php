@@ -14,4 +14,9 @@ class Payment extends Model
     protected $table = 'payments';
 
     public $timestamps = false;
+
+    public function account()
+    {
+        return $this->belongsTo(Account::class);
+    }
 }

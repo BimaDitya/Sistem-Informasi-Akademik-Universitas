@@ -25,13 +25,13 @@
         <div class="col-lg-6 vertical-center">
             <div class="card shadow">
                 <div class="card-header text-center fw-bold highlight-font">
-                    Ubah Data Mahasiswa
+                    Ubah Data Perkuliahan
                 </div>
                 <div class="card-body">
                     <a href="/Admin/Perkuliahan/" class="btn btn-primary">Kembali</a>
                     <form action="/Admin/Perkuliahan/Update/{{ $Courses->id }}" method="POST">
                         @csrf
-                        <div class="mb-2">
+                        <div class="mb-1">
                             <label for="Nama" class="col-sm-4 col-form-label text-start">Semester</label>
                             <input class="form-control" name="semester" list="datalistSemester" id="exampleDataList"
                                 placeholder="Semester..." value="{{ $Courses->semester }}">
@@ -46,7 +46,7 @@
                                 <option value="Semester 8">
                             </datalist>
                         </div>
-                        <div class="row mb-2">
+                        <div class="row mb-1">
                             <div class="col">
                                 <label for="Nama" class="col-sm-6 col-form-label text-start">Matakuliah</label>
                                 <input type="text" name="matakuliah" class="form-control" placeholder="Nama Matakuliah"
@@ -58,7 +58,7 @@
                                     aria-label="Nama Dosen" value="{{ $Courses->dosen }}">
                             </div>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label for="Nama" class="col-sm-4 col-form-label text-start">Hari</label>
                             <input class="form-control" name="hari" list="datalistDay" id="exampleDataList" placeholder="Hari..."
                             value="{{ $Courses->hari }}">
@@ -70,8 +70,7 @@
                                 <option value="Jumat">
                             </datalist>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan Data</button>
-                        <button class="btn btn-secondary" type="reset">Kosongkan</button>
+                        <button type="submit" class="btn btn-success">Update Data</button>
                     </form>
                 </div>
             </div>

@@ -21,29 +21,27 @@
             <thead>
                 <tr class="table-secondary text-center">
                     <th>NIM</th>
-                    <th>Matakuliah</th>
-                    <th>SKS</th>
-                    <th>Nilai</th>
-                    <th>Indeks</th>
+                    <th>Tahun Ajaran</th>
+                    <th>Nominal</th>
+                    <th>Status</th>
                     <th style="width: 10REM">Perintah</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($Grades as $Item)
+                @foreach ($Payments as $Item)
                 <tr class="table-light text-center align-middle">
                     <td>{{ $Item->account->nim ?? '' }}</td>
-                    <td>{{ $Item->course->matakuliah ?? ''}}</td>
-                    <td>{{ $Item->sks ?? ''}}</td>
-                    <td>{{ $Item->nilai ?? ''}}</td>
-                    <td>{{ $Item->indeks ?? ''}}</td>
+                    <td>{{ $Item->tahun ?? ''}}</td>
+                    <td>Rp. {{ number_format($Item->nominal, 0, ".", ".") ?? ''}}</td>
+                    <td>{{ $Item->status ?? ''}}</td>
                     <td>
                         <div class="row justify-content-center">
                             <div class="col">
-                                <a href="/Admin/Transkrip/{{ $Item->id }}" class="btn btn-warning text-decoration-none">
+                                <a href="/Admin/Pembayaran/{{ $Item->id }}" class="btn btn-warning text-decoration-none">
                                     <i class="ph-pencil-simple align-middle"></i>
                                 </a>
                             </div>
-                            <form action="/Admin/Transkrip/Hapus/{{ $Item->id }}" class="col" method="POST">
+                            <form action="/Admin/Pembayaran/Hapus/{{ $Item->id }}" class="col" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-danger" onclick="return confirm('Anda Yakin Menghapus Data?')">
@@ -76,23 +74,13 @@
             <div class="col">
                 <div class="card">
                     <div class="card-header text-center highlight-font fw-bold">
-                        Data Transkrip Nilai
+                        Data Pembayaran UKT
                     </div>
                     <div class="card-body shadow-sm">
-                        <form method="POST" action="/Admin/Transkrip/">
+                        <form method="POST" action="/Admin/Pembayaran/">
                             @csrf
                             <div class="mb-1">
-                                <label for="matakuliah" class="col-sm-4 col-form-label text-start">Nama
-                                    Matakuliah</label>
-                                <select class="form-select" name="course_id">
-                                    <option value="">Pilih Matakuliah</option>
-                                    @foreach ($Courses as $Item)
-                                        <option value="{{ $Item->id }}" {{ old('course_id')  == $Item->id ? 'selected' : null}}>{{ $Item->matakuliah }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-1">
-                                <label for="nim" class="col-sm-4 col-form-label text-start">Nomor Induk
+                                <label for="account_id" class="col-sm-4 col-form-label text-start">Nomor Induk
                                     Mahasiswa</label>
                                 <select class="form-select" name="account_id">
                                     <option value="">Pilih Nomor Induk Mahasiswa</option>
@@ -102,43 +90,30 @@
                                 </select>
                             </div>
                             <div class="mb-2">
-                                <label for="sks" class="col-sm-4 col-form-label text-start">Satuan Kredit
-                                    Semester</label>
-                                <input type="number" name="sks" class="form-control" id="sks" placeholder="Contoh: 3" value="{{ old('sks') }}">
+                                <label for="tahun" class="col-sm-4 col-form-label text-start">Tahun Ajaran</label>
+                                <input type="text" name="tahun" class="form-control" id="tahun" placeholder="Contoh: 2019/2020 Gasal" value="{{ old('tahun') }}">
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
-                                    <label for="nilai" class="col-lg-4 col-form-label text-start">Nilai
-                                        Matakuliah</label>
-                                    <select class="form-select" name="nilai">
-                                        <option value="">Tentukan Nilai</option>
-                                        <option value="A" {{ old('nilai') == "A" ? 'selected' : null}}>A</option>
-                                        <option value="A-" {{ old('nilai') == "A-" ? 'selected' : null}}>A-</option>
-                                        <option value="B+" {{ old('nilai') == "B+" ? 'selected' : null}}>B+</option>
-                                        <option value="B" {{ old('nilai') == "B" ? 'selected' : null}}>B</option>
-                                        <option value="B-" {{ old('nilai') == "B-" ? 'selected' : null}}>B-</option>
-                                        <option value="C+" {{ old('nilai') == "C+" ? 'selected' : null}}>C+</option>
-                                        <option value="C" {{ old('nilai') == "C" ? 'selected' : null}}>C</option>
-                                        <option value="C-" {{ old('nilai') == "C-" ? 'selected' : null}}>C-</option>
-                                        <option value="D" {{ old('nilai') == "D" ? 'selected' : null}}>D</option>
-                                        <option value="E" {{ old('nilai') == "E" ? 'selected' : null}}>E</option>
+                                    <label for="nominal" class="col-lg-4 col-form-label text-start">Tentukan Nominal UKT</label>
+                                    <select class="form-select" name="nominal">
+                                        <option value="">Tentukan Nominal</option>
+                                        <option value="500000" {{ old('nominal') == "500000;" ? 'selected' : null}}>Rp. 500.000</option>
+                                        <option value="1000000" {{ old('nominal') == "1000000" ? 'selected' : null}}>Rp. 1.000.000</option>
+                                        <option value="2400000" {{ old('nominal') == "2400000" ? 'selected' : null}}>Rp. 2.400.000</option>
+                                        <option value="3800000" {{ old('nominal') == "3800000" ? 'selected' : null}}>Rp. 3.800.000</option>
+                                        <option value="5200000" {{ old('nominal') == "5200000" ? 'selected' : null}}>Rp. 5.200.000</option>
+                                        <option value="6500000" {{ old('nominal') == "6500000" ? 'selected' : null}}>Rp. 6.500.000</option>
+                                        <option value="7900000" {{ old('nominal') == "7900000" ? 'selected' : null}}>Rp. 7.900.000</option>
+                                        <option value="9300000" {{ old('nominal') == "9300000" ? 'selected' : null}}>Rp. 9.300.000</option>
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label for="indeks" class="col-lg-4 col-form-label text-start">Indeks
-                                        Matakuliah</label>
-                                    <select class="form-select" name="indeks">
-                                        <option value="">Tentukan Indeks</option>
-                                        <option value="4.00">4.00</option>
-                                        <option value="3.75">3.75</option>
-                                        <option value="3.50">3.50</option>
-                                        <option value="3.00">3.00</option>
-                                        <option value="2.75">2.75</option>
-                                        <option value="2.50">2.50</option>
-                                        <option value="2.25">2.25</option>
-                                        <option value="2.00">2.00</option>
-                                        <option value="1.00">1.00</option>
-                                        <option value="0">0</option>
+                                    <label for="status" class="col-lg-4 col-form-label text-start">Status Pembayaran</label>
+                                    <select class="form-select" name="status">
+                                        <option value="">Tentukan Status Pembayaran</option>
+                                        <option value="L" {{ old('status') == "Lunas" ? 'selected' : null}}>Lunas</option>
+                                        <option value="BL" {{ old('status') == "Belum Lunas" ? 'selected' : null}}>Belum Lunas</option>
                                     </select>
                                 </div>
                             </div>

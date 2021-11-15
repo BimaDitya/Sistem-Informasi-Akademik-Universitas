@@ -23,7 +23,7 @@
         <div class="col-lg-6 vertical-center">
             <div class="card shadow">
                 <div class="card-header text-center fw-bold highlight-font">
-                    Ubah Data Perkuliahan
+                    Ubah Data Nilai
                 </div>
                 <div class="card-body">
                     <a href="/Admin/Transkrip" class="btn btn-primary">Kembali</a>
@@ -51,12 +51,12 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="mb-2">
+                        <div class="mb-1">
                             <label for="sks" class="col-sm-5 col-form-label text-start">Satuan Kredit
                                 Semester</label>
                             <input type="number" name="sks" class="form-control" id="sks" placeholder="Contoh: 3" value="{{ old('sks', $Grades->sks) }}">
                         </div>
-                        <div class="row mb-2">
+                        <div class="row mb-3">
                             <div class="col">
                                 <label for="nilai" class="col-sm-6 col-form-label text-start">Nilai
                                     Matakuliah</label>
@@ -92,8 +92,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Simpan Data</button>
-                        <button class="btn btn-secondary" type="reset">Hapus</button>
+                        <button type="submit" class="btn btn-success">Update Data</button>
                     </form>
                 </div>
             </div>

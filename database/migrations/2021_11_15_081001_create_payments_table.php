@@ -15,9 +15,10 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id('id');
+            $table->foreignId('account_id');
+            $table->bigInteger('nominal');
+            $table->string('status');
             $table->string('tahun');
-            $table->boolean('status');
-            $table->integer('nominal');
         });
     }
 

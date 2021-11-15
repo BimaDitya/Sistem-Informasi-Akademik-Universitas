@@ -4,8 +4,9 @@ namespace App\Models;
 
 use App\Models\Grades;
 use App\Models\School;
-use App\Models\Address;
 use App\Models\Student;
+use App\Models\Payment;
+use App\Models\Address;
 use App\Models\Parental;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,5 +44,10 @@ class Account extends Model
     public function grades()
     {
         return $this->hasMany(Grades::class);
+    }
+
+    public function payment()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

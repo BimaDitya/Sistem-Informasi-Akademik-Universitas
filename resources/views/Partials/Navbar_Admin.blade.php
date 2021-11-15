@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light shadow-sm" style="background: #3399FF;">
     <div class="container-lg px-4">
-        <a class="navbar-brand highlight-font" style="color: #FFFFFF">Selamat Datang</a>
+        <a class="navbar-brand highlight-font" style="color: #FFFFFF">Admin: {{ $Title }}</a>
         <button class="btn btn-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
             aria-controls="offcanvasNavbar">
             <span class="btn ph-list-bold"></span>

@@ -28,7 +28,7 @@
                     Ubah Data Mahasiswa
                 </div>
                 <div class="card-body">
-                    <a href="/Admin" class="btn btn-primary">Kembali</a>
+                    <a href="/Admin/Mahasiswa" class="btn btn-primary">Kembali</a>
                     <form action="/Admin/Mahasiswa/Update/{{ $Accounts->id }}" method="POST">
                         @csrf
                         <div class="mb-1">
@@ -54,7 +54,7 @@
                             <input type="password" name="password" class="form-control" id="password"
                                 placeholder="Password">
                         </div>
-                        <button type="submit" class="btn btn-success">Update</button>
+                        <button type="submit" class="btn btn-success">Update Data</button>
                     </form>
                 </div>
             </div>
