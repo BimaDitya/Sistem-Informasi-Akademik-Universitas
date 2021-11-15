@@ -22,10 +22,10 @@
 <body>
     <main>
         <div class="row h-100 justify-content-center py-4">
-            <div class="col-6">
-                <div class="card shadow-sm">
-                    <div class="card-header text-center">
-                        Update Data Mahasiswa
+            <div class="col-6 vertical-center">
+                <div class="card shadow">
+                    <div class="card-header text-center highlight-font fw-bold">
+                        Update Alamat Mahasiswa
                     </div>
                     <div class="card-body">
                         <a href="/Mahasiswa/Detail" class="btn btn-primary col-2">Kembali</a>

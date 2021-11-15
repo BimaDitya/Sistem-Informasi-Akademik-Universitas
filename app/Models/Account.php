@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Grades;
+use App\Models\School;
 use App\Models\Address;
 use App\Models\Student;
-use App\Models\School;
 use App\Models\Parental;
-use App\Models\College;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,8 +18,6 @@ class Account extends Model
 
     protected $guarded = ['id'];
 
-    protected $hidden = 'password';
-    
     public $timestamps = false;
 
     public function student()
@@ -42,8 +40,8 @@ class Account extends Model
         return $this->hasOne(Parental::class);
     }
 
-    public function college()
+    public function grades()
     {
-        return $this->belongsToMany(College::class);
+        return $this->hasMany(Grades::class);
     }
 }

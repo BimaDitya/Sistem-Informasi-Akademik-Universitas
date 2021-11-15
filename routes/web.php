@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\GradesController;
 use App\Http\Controllers\BerandaController;
-use App\Http\Controllers\CollegeController;
-use App\Http\Controllers\DataMahasiswaController;
-use App\Models\College;
+use App\Models\Course;
+use App\Models\Grades;
+use App\Models\Payment;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,8 @@ Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('g
 Route::post('/', [LoginController::class, 'authMahasiswa']);
 Route::post('/Logout', [LoginController::class, 'logoutMahasiswa']);
 
-// Halaman Data Mahasiswa
+// Student Sections
+// Data Mahasiswa
 Route::get('/Beranda', [BerandaController::class, 'index'])->middleware('auth');
 Route::get('/Mahasiswa/Detail/', [BerandaController::class, 'detailStudent'])->middleware('auth');
 // Bagian Biodata
@@ -43,19 +45,32 @@ Route::post('/Mahasiswa/Store/OrangTua', [BerandaController::class, 'storeParent
 Route::get('/Mahasiswa/Update/OrangTua', [BerandaController::class, 'updateParentDetail'])->middleware('auth');
 Route::post('/Mahasiswa/Update/Parent', [BerandaController::class, 'updateParent']);
 
-// Halaman Data Kuliah
-Route::get('/Kuliah/Detail', [BerandaController::class, 'detailCollege'])->middleware('auth');
-Route::get('/KRS/Detail', [BerandaController::class, 'detailKRS'])->middleware('auth');
-
-Route::get('/Admin', [AdminController::class, 'index']);
-Route::post('/Admin', [AdminController::class, 'storeAccount']);
-Route::get('/Admin/Mahasiswa', [AdminController::class, 'detail']);
-Route::post('/Admin/Mahasiswa/Update', [AdminController::class, 'updateAccount']);
-Route::delete('/Admin/Mahasiswa/Hapus', [AdminController::class, 'delete']);
-
+// Admin Section //
+// Mahasiswa
+Route::get('/Admin/Mahasiswa/', [AdminController::class, 'readAccount']);
+Route::post('/Admin/Mahasiswa/', [AdminController::class, 'storeAccount']);
+Route::get('/Admin/Mahasiswa/{id}', [AdminController::class, 'detailAccount']);
+Route::post('/Admin/Mahasiswa/Update/{id}', [AdminController::class, 'updateAccount']);
+Route::delete('/Admin/Mahasiswa/Hapus/{id}', [AdminController::class, 'deleteAccount']);
 // Perkuliahan
-Route::get('/Admin/Perkuliahan', [CollegeController::class, 'readCollege']);
-Route::post('/Admin/Perkuliahan', [CollegeController::class, 'storeCollege']);
-Route::get('/Admin/Perkuliahan/Detail', [CollegeController::class, 'detailCollege']);
-Route::post('/Admin/Perkuliahan/Update', [CollegeController::class, 'updateCollege']);
-Route::delete('/Admin/Perkuliahan/Hapus', [CollegeController::class, 'deleteCollege']);
+Route::get('/Admin/Perkuliahan/', [AdminController::class, 'readCourse']);
+Route::post('/Admin/Perkuliahan/', [AdminController::class, 'storeCourse']);
+Route::get('/Admin/Perkuliahan/{id}', [AdminController::class, 'detailCourse']);
+Route::post('/Admin/Perkuliahan/Update/{id}', [AdminController::class, 'updateCourse']);
+Route::delete('/Admin/Perkuliahan/Hapus/{id}', [AdminController::class, 'deleteCourse']);
+// Transkrip Nilai
+Route::get('/Admin/Transkrip/', [AdminController::class, 'readGrades']);
+Route::post('/Admin/Transkrip/', [AdminController::class, 'storeGrades']);
+Route::get('/Admin/Transkrip/{Grades}', [AdminController::class, 'detailGrades', function(Grades $Grades){
+	return $Grades; }]);
+Route::post('/Admin/Transkrip/Update/{Grades}', [AdminController::class, 'updateGrades', function(Grades $Grades){
+	return $Grades; }]);
+Route::delete('/Admin/Transkrip/Hapus/{id}', [AdminController::class, 'deleteGrades']);
+// Pembaayaran UKT
+Route::get('/Admin/Pembayaran/', [AdminController::class, 'readPayment']);
+Route::post('/Admin/Pembayaran/', [AdminController::class, 'storePayment']);
+Route::get('/Admin/Pembayaran/{Payment}', [AdminController::class, 'detailPayment', function(Payment $Payment){
+	return $Payment; }]);
+Route::post('/Admin/Pembayaran/Update/{Payment}', [AdminController::class, 'updatePayment', function(Payment $Payment){
+	return $Payment; }]);
+Route::delete('/Admin/Pembayaran/Hapus/{id}', [AdminController::class, 'deletePayment']);

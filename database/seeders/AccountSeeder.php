@@ -20,5 +20,18 @@ class AccountSeeder extends Seeder
             'nama_belakang' => 'Aditya',
             'password' => bcrypt('1122123Bb'),
         ]);
+        Account::create([
+            'nim' => '19050974043',
+            'nama_depan' => 'Albertus',
+            'nama_belakang' => 'Anggara',
+            'password' => bcrypt('Albert043'),
+        ]);
+        Account::create([
+            'nim' => '19050974066',
+            'nama_depan' => 'Dimas',
+            'nama_belakang' => 'Putra',
+            'password' => bcrypt('Dimas066'),
+        ]);
+        
     }
 }

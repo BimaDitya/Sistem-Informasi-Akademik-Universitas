@@ -21,13 +21,11 @@
     <main>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-lg-6 mt-5">
-                    <div class="mt-5 align-self-center">
-                        {{-- Tab Mahasiswa --}}
-                        <div class="card py-2 px-4 shadow-sm">
+                <div class="col-lg-5 vertical-center">
+                    <div class="align-self-center">
+                        <div class="card py-2 px-4 shadow">
                             <main class="form-signin text-center">
-                                <h1 class="h1 fw-normal login-heading-font azure-color-01">Selamat Datang</h1>
-                                <p class="fs-6 mb-3">Masuk Sebagai Mahasiswa</p>
+                                <h1 class="login-heading-font display-6 py-3">Selamat Datang</h1>
                                 <form action="/" method="POST">
                                     @csrf
                                     <div class="form-floating mb-3">
@@ -41,18 +39,17 @@
                                             required>
                                         <label for="password">Kata Sandi</label>
                                     </div>
-                                    <button class="w-100 btn btn-lg btn-outline-primary fw-bold mb-3"
+                                    <button class="col-12 btn btn-lg btn-primary highlight-font mb-3"
                                         type="submit">Masuk</button>
                                 </form>
-                                @if (session('Gagal'))
-                                <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
-                                    {{ session('Gagal') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                                @endif
                             </main>
                         </div>
+                        @if (session('Gagal'))
+                        <div class="alert alert-danger alert-dismissible fade show my-2" role="alert">
+                            {{ session('Gagal') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -21,92 +21,96 @@
 
 <body>
     <main>
-        <div class="row h-100 justify-content-center py-2">
-            <div class="col-6">
-                <div class="card shadow-sm">
-                    <div class="card-header text-center">
+        <div class="row justify-content-center py-2">
+            <div class="col-6 vertical-center">
+                <div class="card shadow">
+                    <div class="card-header text-center highlight-font fw-bold">
                         Identitas Orang Tua Mahasiswa
                     </div>
-                    <div class="card-body">
-                        <form action="/Mahasiswa/Update/Parent" method="POST">
-                            @csrf
-                            {{-- Alamat Mahasiswa --}}
-                            <div class="card-body">
-                                <a href="/Mahasiswa/Detail" class="btn btn-primary col-2 mb-2">Kembali</a>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="card">
-                                            <div class="card-header text-center">
-                                                Identitas Ibu
-                                            </div>
-                                            <div class="card-body">
-                                                <label for="Nama"
-                                                    class="col-sm-6 col-form-label text-start">Nama</label>
-                                                <div class="input-group">
-                                                    <input type="text" name="nama_ibu" aria-label="Nama"
-                                                        class="form-control" value="{{ $Data->parent->nama_ibu ?? '' }}" placeholder="Contoh: Siti Aminah">
-                                                </div>
-                                                <label for="Tempat Lahir"
-                                                    class="col-sm-6 col-form-label text-start">Tempat Lahir</label>
-                                                <div class="input-group">
-                                                    <input type="text" name="tempat_ibu" aria-label="Tempat Lahir"
-                                                        class="form-control" value="{{ $Data->parent->tempat_ibu ?? '' }}" placeholder="Contoh: Kebon Jeruk">
-                                                </div>
-                                                <label for="Tanggal Lahir"
-                                                    class="col-sm-6 col-form-label text-start">Tanggal Lahir</label>
-                                                <div class="input-group">
-                                                    <input type="date" name="tanggal_ibu" aria-label="Tanggal Lahir"
-                                                        class="form-control" value="{{ $Data->parent->tanggal_ibu ?? '' }}" placeholder="Contoh: YYYY-MM-DD">
-                                                </div>
-                                                <label for="No. Telepon" class="col-sm-6 col-form-label text-start">No.
-                                                    Telepon</label>
-                                                <div class="input-group">
-                                                    <input type="number" name="no_ibu" aria-label="No. Telepon"
-                                                        class="form-control" value="{{ $Data->parent->no_ibu ?? '' }}" placeholder="+62822XXXXXXXX">
-                                                </div>
-                                            </div>
+                    <form action="/Mahasiswa/Update/Parent" method="POST">
+                        @csrf
+                        {{-- Alamat Mahasiswa --}}
+                        <div class="card-body">
+                            <a href="/Mahasiswa/Detail" class="btn btn-primary col-2 mb-3">Kembali</a>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header text-center">
+                                            Identitas Ibu
                                         </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="card">
-                                            <div class="card-header text-center">
-                                                Identitas Ayah
+                                        <div class="card-body">
+                                            <label for="Nama" class="col-sm-6 col-form-label text-start">Nama</label>
+                                            <div class="input-group">
+                                                <input type="text" name="nama_ibu" aria-label="Nama"
+                                                    class="form-control" value="{{ $Data->parent->nama_ibu ?? '' }}"
+                                                    placeholder="Contoh: Siti Aminah">
                                             </div>
-                                            <div class="card-body">
-                                                <label for="Nama"
-                                                    class="col-sm-6 col-form-label text-start">Nama</label>
-                                                <div class="input-group">
-                                                    <input type="text" name="nama_ayah" aria-label="Nama"
-                                                        class="form-control" value="{{ $Data->parent->nama_ayah ?? '' }}" placeholder="Contoh: Abdullah">
-                                                </div>
-                                                <label for="Tempat Lahir"
-                                                    class="col-sm-6 col-form-label text-start">Tempat Lahir</label>
-                                                <div class="input-group">
-                                                    <input type="text" name="tempat_ayah" aria-label="Tempat Lahir"
-                                                        class="form-control" value="{{ $Data->parent->tempat_ayah ?? '' }}" placeholder="Contoh: Kebon Jeruk">
-                                                </div>
-                                                <label for="Tanggal Lahir"
-                                                    class="col-sm-6 col-form-label text-start">Tanggal Lahir</label>
-                                                <div class="input-group">
-                                                    <input type="date" name="tanggal_ayah" aria-label="Tanggal Lahir"
-                                                        class="form-control" value="{{ $Data->parent->tanggal_ayah ?? '' }}" placeholder="Contoh: YYYY-MM-DD">
-                                                </div>
-                                                <label for="No. Telepon" class="col-sm-6 col-form-label text-start">No.
-                                                    Telepon</label>
-                                                <div class="input-group">
-                                                    <input type="number" name="no_ayah" aria-label="No. Telepon"
-                                                        class="form-control" value="{{ $Data->parent->no_ayah ?? '' }}" placeholder="+62822XXXXXXXX">
-                                                </div>
+                                            <label for="Tempat Lahir" class="col-sm-6 col-form-label text-start">Tempat
+                                                Lahir</label>
+                                            <div class="input-group">
+                                                <input type="text" name="tempat_ibu" aria-label="Tempat Lahir"
+                                                    class="form-control" value="{{ $Data->parent->tempat_ibu ?? '' }}"
+                                                    placeholder="Contoh: Kebon Jeruk">
+                                            </div>
+                                            <label for="Tanggal Lahir"
+                                                class="col-sm-6 col-form-label text-start">Tanggal Lahir</label>
+                                            <div class="input-group">
+                                                <input type="date" name="tanggal_ibu" aria-label="Tanggal Lahir"
+                                                    class="form-control" value="{{ $Data->parent->tanggal_ibu ?? '' }}"
+                                                    placeholder="Contoh: YYYY-MM-DD">
+                                            </div>
+                                            <label for="No. Telepon" class="col-sm-6 col-form-label text-start">No.
+                                                Telepon</label>
+                                            <div class="input-group">
+                                                <input type="number" name="no_ibu" aria-label="No. Telepon"
+                                                    class="form-control" value="{{ $Data->parent->no_ibu ?? '' }}"
+                                                    placeholder="+62822XXXXXXXX">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <button type="submit" class="btn btn-success my-2 col-2">Simpan</button>
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-header text-center">
+                                            Identitas Ayah
+                                        </div>
+                                        <div class="card-body">
+                                            <label for="Nama" class="col-sm-6 col-form-label text-start">Nama</label>
+                                            <div class="input-group">
+                                                <input type="text" name="nama_ayah" aria-label="Nama"
+                                                    class="form-control" value="{{ $Data->parent->nama_ayah ?? '' }}"
+                                                    placeholder="Contoh: Abdullah">
+                                            </div>
+                                            <label for="Tempat Lahir" class="col-sm-6 col-form-label text-start">Tempat
+                                                Lahir</label>
+                                            <div class="input-group">
+                                                <input type="text" name="tempat_ayah" aria-label="Tempat Lahir"
+                                                    class="form-control" value="{{ $Data->parent->tempat_ayah ?? '' }}"
+                                                    placeholder="Contoh: Kebon Jeruk">
+                                            </div>
+                                            <label for="Tanggal Lahir"
+                                                class="col-sm-6 col-form-label text-start">Tanggal Lahir</label>
+                                            <div class="input-group">
+                                                <input type="date" name="tanggal_ayah" aria-label="Tanggal Lahir"
+                                                    class="form-control" value="{{ $Data->parent->tanggal_ayah ?? '' }}"
+                                                    placeholder="Contoh: YYYY-MM-DD">
+                                            </div>
+                                            <label for="No. Telepon" class="col-sm-6 col-form-label text-start">No.
+                                                Telepon</label>
+                                            <div class="input-group">
+                                                <input type="number" name="no_ayah" aria-label="No. Telepon"
+                                                    class="form-control" value="{{ $Data->parent->no_ayah ?? '' }}"
+                                                    placeholder="+62822XXXXXXXX">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <div>
+                                <button type="submit" class="btn btn-success mt-4 col-2">Simpan</button>
+                            </div>
+                        </div>
+                    </form>
                     @if (session('Gagal'))
                     <div class="alert alert-alert alert-dismissible fade show col-6" role="alert">
                         {{ session('Gagal') }}

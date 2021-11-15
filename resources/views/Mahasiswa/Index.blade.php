@@ -42,8 +42,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
+            {{-- Edit Personal --}}
                 <div class="card shadow-sm">
-                    <div class="card-header text-center">
+                    <div class="card-header text-center highlight-font fw-bold">
                         Biodata Mahasiswa
                     </div>
                     <div class="card-body">
@@ -126,7 +127,7 @@
                 <div class="card shadow-sm">
                     <form action="/Mahasiswa/Store/Alamat" method="POST">
                         @csrf
-                        <div class="card-header text-center">
+                        <div class="card-header text-center highlight-font fw-bold">
                             Alamat Mahasiswa
                         </div>
                         {{-- Alamat Mahasiswa --}}
@@ -155,13 +156,13 @@
                             @if ($Data->address == "")
                             <div>
                                 <button type="submit" class="btn btn-success my-2 col-2">Simpan</button>
-                                <a href="/Mahasiswa/Update/Sekolah"
+                                <a href="/Mahasiswa/Update/Alamat"
                                     class="btn btn-secondary my-4 col-2 disabled">Update</a>
                             </div>
                             @else
                             <div>
                                 <button type="submit" class="btn btn-secondary my-2 col-2 disabled">Simpan</button>
-                                <a href="/Mahasiswa/Update/Sekolah" class="btn btn-primary my-4 col-2">Update</a>
+                                <a href="/Mahasiswa/Update/Alamat" class="btn btn-primary my-4 col-2">Update</a>
                             </div>
                             @endif
                         </div>
@@ -174,7 +175,7 @@
                 <div class="card shadow-sm">
                     <form action="/Mahasiswa/Store/Sekolah" method="POST">
                         @csrf
-                        <div class="card-header text-center">
+                        <div class="card-header text-center highlight-font fw-bold">
                             Asal Sekolah Mahasiswa
                         </div>
                         {{-- Sekolah Mahasiswa --}}
@@ -221,7 +222,7 @@
                 <div class="card shadow-sm">
                     <form action="/Mahasiswa/Store/OrangTua" method="POST">
                         @csrf
-                        <div class="card-header text-center">
+                        <div class="card-header text-center highlight-font fw-bold">
                             Identitas Orang Tua Mahasiswa
                         </div>
                         {{-- Alamat Mahasiswa --}}
@@ -229,7 +230,7 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="card">
-                                        <div class="card-header text-center">
+                                        <div class="card-header text-center highlight-font fw-bold">
                                             Identitas Ibu
                                         </div>
                                         <div class="card-body">
@@ -265,7 +266,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="card">
-                                        <div class="card-header text-center">
+                                        <div class="card-header text-center highlight-font fw-bold">
                                             Identitas Ayah
                                         </div>
                                         <div class="card-body">

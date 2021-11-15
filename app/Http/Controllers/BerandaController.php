@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\School;
 use App\Models\Account;
 use App\Models\Address;
-use App\Models\College;
-use App\Models\Parental;
 use App\Models\Student;
-use App\Models\School;
+use App\Models\Parental;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+
 
 class BerandaController extends Controller
 {
     // Biodata Mahasiswa
-    public function storeStudent(Request $request, College $id)
+    public function storeStudent(Request $request)
     {
         $storeStudent = $request->validate([
             'agama' => 'required|max:10',

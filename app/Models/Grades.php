@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Models\Grades;
 use App\Models\Account;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Student extends Model
+
+class Grades extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    protected $table = 'students';
+    protected $table = 'grades';
 
     public $timestamps = false;
 
@@ -21,8 +21,8 @@ class Student extends Model
     {
         return $this->belongsTo(Account::class);
     }
-    public function grade()
+    public function course()
     {
-        return$this->hasMany(Grades::class);
+        return $this->belongsTo(Course::class);
     }
 }
