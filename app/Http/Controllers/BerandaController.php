@@ -6,10 +6,12 @@ use App\Models\School;
 use App\Models\Account;
 use App\Models\Address;
 use App\Models\Student;
+use App\Models\Image;
 use App\Models\Parental;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 
 class BerandaController extends Controller
@@ -62,7 +64,7 @@ class BerandaController extends Controller
     {
         $Data = Account::first();
         Auth::user()->id;
-        return view ('Mahasiswa.Update', ['Title' => 'Mahasiswa'])->with('Data',$Data);
+        return view ('Student.Mahasiswa.Update', ['Title' => 'Mahasiswa'])->with('Data',$Data);
     }
 
     // Alamat Mahasiswa
@@ -103,7 +105,7 @@ class BerandaController extends Controller
     {
         $Data = Account::first();
         Auth::user()->id;
-        return view ('Mahasiswa.UpdateAddress', ['Title' => 'Mahasiswa'])->with('Data',$Data);
+        return view ('Student.Mahasiswa.UpdateAddress', ['Title' => 'Mahasiswa'])->with('Data',$Data);
     }
 
     // Asal Sekolah Mahasiswa
@@ -144,7 +146,7 @@ class BerandaController extends Controller
     {
         $Data = Account::first();
         Auth::user()->id;
-        return view ('Mahasiswa.UpdateSchool', ['Title' => 'Mahasiswa'])->with('Data',$Data);
+        return view ('Student.Mahasiswa.UpdateSchool', ['Title' => 'Mahasiswa'])->with('Data',$Data);
     }
 
     // Orang Tua Mahasiswa
@@ -197,27 +199,71 @@ class BerandaController extends Controller
     {
         $Data = Account::first();
         Auth::user()->id;
-        return view ('Mahasiswa.UpdateParent', ['Title' => 'Mahasiswa'])->with('Data',$Data);
+        return view ('Student.Mahasiswa.UpdateParent', ['Title' => 'Mahasiswa'])->with('Data',$Data);
     }
 
     // Kuliah & Kuliah
     public function detailCollege()
     {
         Auth::user()->id;
-        return view('Kuliah.Index', ['Title' => 'Perkuliahan']);
+        return view('Student.Kuliah.Index', ['Title' => 'Perkuliahan']);
     }
     
     // Passing Data
     public function detailStudent()
     {
         $Data = Account::first();
-        return view ('Mahasiswa.Index', ['Title' => 'Mahasiswa'])->with('Data',$Data);
+        return view ('Student.Mahasiswa.Index', ['Title' => 'Mahasiswa'])->with('Data',$Data);
     }
 
+    //Beranda
     public function index()
     {
+        $Data = Account::first();
+        return view('Student.Beranda.Index', ['Title' => 'Beranda'])->with('Data', $Data);
+    }
+
+    public function storeImage(Request $request)
+    {
+        $storeImage = $request->validate([
+            'image' => 'required|mimes:jpg,jpeg,png|max:1024'
+        ]);
+        $storeImage ['account_id'] = auth()->user()->id;
+        
+        $storeImage = new Image;
+        $storeImage -> account_id = auth()->user()->id;
+        if($request->file('image')){
+            $fileName = $request->image->getClientOriginalName();
+            $storeImage['image'] = $request->file('image')->storeAs('FotoProfil', $fileName);
+        }
+        $storeImage -> save();
+
+        return redirect('/Beranda')->with('Berhasil', 'Data Berhasil Diperbarui');
+    }
+
+    public function updateImage(Request $request) {
+        $updateImage = $request->validate([
+            'image' => 'required|mimes:jpg,jpeg,png|max:1024'
+        ]);
+
+
+        $updateImage = Account::first()->image;
+        if($request->file('image')){
+            if($request->oldImage){
+                Storage::delete($request->oldImage);
+            }
+            $fileName = $request->image->getClientOriginalName();
+            $updateImage['image'] = $request->file('image')->storeAs('FotoProfil', $fileName);
+        }
+        $updateImage -> save();
+
+        return redirect('/Beranda')->with('Berhasil', 'Data Berhasil Diperbarui');
+    }
+
+    public function updateImageDetail(){
+        $Data = Account::first();
         Auth::user()->id;
-        return view('Beranda.Index', ['Title' => 'Beranda']);
+        return view('Student.Beranda.Update', ['Title' => 'Beranda'])->with('Data', $Data);
     }
 
     // KRS

@@ -35,7 +35,10 @@ class Account extends Model
     {
         return $this->hasOne(School::class);
     }
-
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
     public function parent()
     {
         return $this->hasOne(Parental::class);
