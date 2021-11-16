@@ -16,14 +16,16 @@ class AdminController extends Controller
     public function storeAccount(Request $request)
     {
         $storeAccount = $request->validate([
-            "nim" => "required|min:11|max:11",
+            "no_id" => "required|min:11|max:11",
+            "role" => "required",
             "password" => "required",
             "nama_depan" => "required",
             "nama_belakang" => "required",
         ]);
 
         $storeAccount = new Account;
-        $storeAccount->nim = $request->nim;
+        $storeAccount->role = $request->role;
+        $storeAccount->no_id = $request->no_id;
         $storeAccount->nama_depan = $request->nama_depan;
         $storeAccount->nama_belakang = $request->nama_belakang;
         $storeAccount->password = Hash::make($request->password);
@@ -36,7 +38,7 @@ class AdminController extends Controller
     public function readAccount()
     {
         $Accounts = Account::all()->sortBy('nim', false);
-        return view('Admin.Mahasiswa.Index', compact('Accounts'), ['Title' => 'Mahasiswa']);
+        return view('Admin.Mahasiswa.Index', compact('Accounts'), ['Title' => 'Akun']);
     }
     public function detailAccount(Account $id)
     {
@@ -46,14 +48,16 @@ class AdminController extends Controller
     public function updateAccount(Request $request, Account $id)
     {
         $updateAccount = $request->validate([
-            "nim" => "required|min:11|max:11",
+            "no_id" => "required|min:11|max:11",
+            "role" => "required",
             "password" => "required",
             "nama_depan" => "required",
             "nama_belakang" => "required",
         ]);
 
         $updateAccount = Account::find($id)->first();
-        $updateAccount->nim = $request->nim;
+        $updateAccount->role = $request->role;
+        $updateAccount->no_id = $request->no_id;
         $updateAccount->nama_depan = $request->nama_depan;
         $updateAccount->nama_belakang = $request->nama_belakang;
         $updateAccount->password = Hash::make($request->password);

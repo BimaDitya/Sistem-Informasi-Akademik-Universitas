@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    {{-- Bootstrap Core CSS --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
-    {{-- CSS Custom Style --}}
-    <link rel="stylesheet" href="/Style/Mystyle.css">
-
-    <title>Mahasiswa | {{ $Title }}</title>
-
-    @include('Partials.Icons')
-</head>
-
-<body>
-    {{-- Navbar --}}
-    <header>
-        @include('Partials.Navbar')
-    </header>
-
-    {{-- Content --}}
+@extends('Student.MainStudent')
+@section('Contents')
     <main>
         <!--Biodata Mahasiswa-->
         <div class="row h-100 justify-content-center py-4 px-2">
@@ -42,7 +18,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 @endif
-            {{-- Edit Personal --}}
+                {{-- Edit Personal --}}
                 <div class="card shadow-sm">
                     <div class="card-header text-center highlight-font fw-bold">
                         Biodata Mahasiswa
@@ -74,8 +50,7 @@
                             </div>
                             <label for="Jenis Kelamin" class="col-sm-4 col-form-label text-start">Jenis Kelamin</label>
                             <div class="input-group">
-                                <select name="jenis_kelamin" class="form-select form-control-lg"
-                                    aria-label="Jenis Kelamin">
+                                <select name="jenis_kelamin" class="form-select form-control-lg" aria-label="Jenis Kelamin">
                                     <option selected>{{ $Data->student->jenis_kelamin ?? '' }}</option>
                                     <option value="Laki-Laki">Laki-Laki
                                     </option>
@@ -108,8 +83,7 @@
                             <div>
                                 <button type="submit" class="btn btn-success my-2 col-2"
                                     data-bs-toggle="modal">Simpan</button>
-                                <a href="/Mahasiswa/Update/Biodata"
-                                    class="btn btn-secondary my-4 col-2 disabled">Update</a>
+                                <a href="/Mahasiswa/Update/Biodata" class="btn btn-secondary my-4 col-2 disabled">Update</a>
                             </div>
                             @else
                             <div>
@@ -121,7 +95,7 @@
                     </div>
                 </div>
             </div>
-
+    
             <!--Edit Alamat-->
             <div class="col-7 mt-2">
                 <div class="card shadow-sm">
@@ -156,8 +130,7 @@
                             @if ($Data->address == "")
                             <div>
                                 <button type="submit" class="btn btn-success my-2 col-2">Simpan</button>
-                                <a href="/Mahasiswa/Update/Alamat"
-                                    class="btn btn-secondary my-4 col-2 disabled">Update</a>
+                                <a href="/Mahasiswa/Update/Alamat" class="btn btn-secondary my-4 col-2 disabled">Update</a>
                             </div>
                             @else
                             <div>
@@ -169,7 +142,7 @@
                     </form>
                 </div>
             </div>
-
+    
             {{-- Asal Sekolah --}}
             <div class="col-7 mt-2">
                 <div class="card shadow-sm">
@@ -203,8 +176,7 @@
                             @if ($Data->school == "")
                             <div>
                                 <button type="submit" class="btn btn-success my-2 col-2">Simpan</button>
-                                <a href="/Mahasiswa/Update/Sekolah"
-                                    class="btn btn-secondary my-4 col-2 disabled">Update</a>
+                                <a href="/Mahasiswa/Update/Sekolah" class="btn btn-secondary my-4 col-2 disabled">Update</a>
                             </div>
                             @else
                             <div>
@@ -216,7 +188,7 @@
                     </form>
                 </div>
             </div>
-
+    
             {{-- Identitas Orang Tua --}}
             <div class="col-7 mt-2">
                 <div class="card shadow-sm">
@@ -236,8 +208,8 @@
                                         <div class="card-body">
                                             <label for="Nama" class="col-sm-6 col-form-label text-start">Nama</label>
                                             <div class="input-group">
-                                                <input type="text" name="nama_ibu" aria-label="Nama"
-                                                    class="form-control" value="{{ $Data->parent->nama_ibu ?? '' }}"
+                                                <input type="text" name="nama_ibu" aria-label="Nama" class="form-control"
+                                                    value="{{ $Data->parent->nama_ibu ?? '' }}"
                                                     placeholder="Contoh: Siti Aminah">
                                             </div>
                                             <label for="Tempat Lahir" class="col-sm-6 col-form-label text-start">Tempat
@@ -247,8 +219,8 @@
                                                     class="form-control" value="{{ $Data->parent->tempat_ibu ?? '' }}"
                                                     placeholder="Contoh: Kebon Jeruk">
                                             </div>
-                                            <label for="Tanggal Lahir"
-                                                class="col-sm-6 col-form-label text-start">Tanggal Lahir</label>
+                                            <label for="Tanggal Lahir" class="col-sm-6 col-form-label text-start">Tanggal
+                                                Lahir</label>
                                             <div class="input-group">
                                                 <input type="date" name="tanggal_ibu" aria-label="Tanggal Lahir"
                                                     class="form-control" value="{{ $Data->parent->tanggal_ibu ?? '' }}"
@@ -272,8 +244,8 @@
                                         <div class="card-body">
                                             <label for="Nama" class="col-sm-6 col-form-label text-start">Nama</label>
                                             <div class="input-group">
-                                                <input type="text" name="nama_ayah" aria-label="Nama"
-                                                    class="form-control" value="{{ $Data->parent->nama_ayah ?? '' }}"
+                                                <input type="text" name="nama_ayah" aria-label="Nama" class="form-control"
+                                                    value="{{ $Data->parent->nama_ayah ?? '' }}"
                                                     placeholder="Contoh: Abdullah">
                                             </div>
                                             <label for="Tempat Lahir" class="col-sm-6 col-form-label text-start">Tempat
@@ -283,8 +255,8 @@
                                                     class="form-control" value="{{ $Data->parent->tempat_ayah ?? '' }}"
                                                     placeholder="Contoh: Kebon Jeruk">
                                             </div>
-                                            <label for="Tanggal Lahir"
-                                                class="col-sm-6 col-form-label text-start">Tanggal Lahir</label>
+                                            <label for="Tanggal Lahir" class="col-sm-6 col-form-label text-start">Tanggal
+                                                Lahir</label>
                                             <div class="input-group">
                                                 <input type="date" name="tanggal_ayah" aria-label="Tanggal Lahir"
                                                     class="form-control" value="{{ $Data->parent->tanggal_ayah ?? '' }}"
@@ -319,9 +291,4 @@
             </div>
         </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
-    </script>
-</body>
-
-</html>
+@endsection

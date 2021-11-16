@@ -4,7 +4,7 @@
 <ul class="nav nav-tabs nav-fill" id="pills-tab" role="tablist">
     <li class="nav-item" role="presentation">
         <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-            type="button" role="tab" aria-controls="pills-home" aria-selected="true">Daftar Mahasiswa</button>
+            type="button" role="tab" aria-controls="pills-home" aria-selected="true">Daftar Akun</button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
@@ -20,7 +20,8 @@
         <table class="table table-bordered">
             <thead>
                 <tr class="table-secondary text-center">
-                    <th>Nomor Induk Mahasiswa</th>
+                    <th>Nomor Identitas</th>
+                    <th>Role Akun</th>
                     <th>Nama Depan</th>
                     <th>Nama Belakang</th>
                     <th style="width: 10REM">Perintah</th>
@@ -29,7 +30,8 @@
             <tbody>
                 @foreach ($Accounts as $Item)
                 <tr class="table-light text-center align-middle">
-                    <td>{{ $Item->nim}}</td>
+                    <td>{{ $Item->no_id}}</td>
+                    <td>{{ $Item->role}}</td>
                     <td>{{ $Item->nama_depan }}</td>
                     <td>{{ $Item->nama_belakang }}</td>
                     <td>
@@ -70,14 +72,13 @@
         {{-- Personal Data --}}
         <div class="card">
             <div class="card-header text-center highlight-font fw-bold">
-                Data Mahasiswa
+                Data Akun
             </div>
             <div class="card-body shadow-sm">
                 <form method="POST" action="/Admin/Mahasiswa/">
                     @csrf
                     <div class="mb-2">
-                        <label for="Nama" class="col-sm-4 col-form-label text-start">Nomor Induk
-                            Mahasiswa</label>
+                        <label for="Nama" class="col-sm-4 col-form-label text-start">Nomor Identitas</label>
                         <input type="number" name="nim" class="form-control" id="nim" placeholder="Contoh: 12345678900">
                     </div>
                     <div class="row mb-2">
@@ -91,6 +92,14 @@
                             <input type="text" name="nama_belakang" class="form-control" placeholder="Nama Belakang"
                                 aria-label="Nama Belakang Mahasiswa">
                         </div>
+                    </div>
+                    <div class="mb-2">
+                        <label for="Nama" class="col-sm-4 col-form-label text-start">Role Akun</label>
+                        <select class="form-select" name="role">
+                            <option selected>Pilih Role Akun</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Student">Student</option>
+                        </select>
                     </div>
                     <div class="mb-2">
                         <label for="Nama" class="col-sm-4 col-form-label text-start">Pasword</label>

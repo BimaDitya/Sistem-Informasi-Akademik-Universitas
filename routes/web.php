@@ -1,11 +1,12 @@
 <?php
 
+use App\Models\Grades;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BerandaController;
-use App\Models\Grades;
-use App\Models\Payment;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +18,13 @@ use App\Models\Payment;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', [LoginController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/', [LoginController::class, 'authMahasiswa']);
-Route::post('/Logout', [LoginController::class, 'logoutMahasiswa']);
+Route::post('/', [LoginController::class, 'authAccount']);
+Route::post('/Logout', [LoginController::class, 'logoutAccount']);
 
 // Student Sections
-// Data Mahasiswa
-Route::get('/Beranda', [BerandaController::class, 'index'])->middleware('auth');
+// Bagian Beranda
+Route::get('/Beranda', [StudentController::class, 'readHome'])->name('student')->middleware('auth');
 Route::get('/Mahasiswa/Detail/', [BerandaController::class, 'detailStudent'])->middleware('auth');
 // Bagian Biodata
 Route::post('/Mahasiswa/Store/Biodata', [BerandaController::class, 'storeStudent']);
@@ -45,7 +45,7 @@ Route::post('/Mahasiswa/Update/Parent', [BerandaController::class, 'updateParent
 
 // Admin Section //
 // Mahasiswa
-Route::get('/Admin/Mahasiswa/', [AdminController::class, 'readAccount']);
+Route::get('/Admin/Mahasiswa/', [AdminController::class, 'readAccount'])->name('admin')->middleware('auth');
 Route::post('/Admin/Mahasiswa/', [AdminController::class, 'storeAccount']);
 Route::get('/Admin/Mahasiswa/{id}', [AdminController::class, 'detailAccount']);
 Route::post('/Admin/Mahasiswa/Update/{id}', [AdminController::class, 'updateAccount']);

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -14,22 +14,30 @@ class LoginController extends Controller
 
         return view('Login.Index', ['Title' => 'Login']);
     }
-    
-    public function authMahasiswa(Request $request) {
 
-        $credentials = $request->validate([
-            'nim' => ['required', 'max:11', 'min:11'],
-            'password' => ['required', 'min:8']
+    public function authAccount(Request $request) {
+
+        $input = $request->all();
+   
+        $this->validate($request, [
+            'no_id' => 'required|',
+            'password' => 'required',
         ]);
-
-        if(Auth::attempt($credentials)) {
-            $request->session();
-            return redirect()->intended('/Beranda');
+   
+        if(Auth::attempt(array('no_id' => $input['no_id'], 'password' => $input['password'])))
+        {
+            if (auth()->user()->role == 'Admin') {
+                return redirect()->route('admin');
+            }else{
+                return redirect()->route('student');
+            }
+        }else{
+            return redirect()->route('login')
+                ->with('Gagal','Login Gagal Periksa Kembali');
         }
-        return back()->with('Gagal', 'Login Gagal, Periksa Kembali');
     }
 
-    public function logoutMahasiswa(Request $request)
+    public function logoutAccount(Request $request)
     {
         Auth::logout();
 

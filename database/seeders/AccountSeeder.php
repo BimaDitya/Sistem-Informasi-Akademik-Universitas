@@ -15,23 +15,32 @@ class AccountSeeder extends Seeder
     public function run()
     {
         Account::create([
-            'nim' => '19050974042',
+            'role'  => 'Student',
+            'no_id' => '19050974042',
             'nama_depan' => 'Bima',
             'nama_belakang' => 'Aditya',
             'password' => bcrypt('1122123Bb'),
         ]);
         Account::create([
-            'nim' => '19050974043',
+            'role'  => 'Student',
+            'no_id' => '19050974043',
             'nama_depan' => 'Albertus',
             'nama_belakang' => 'Anggara',
             'password' => bcrypt('Albert043'),
         ]);
         Account::create([
-            'nim' => '19050974066',
+            'role'  => 'Student',
+            'no_id' => '19050974066',
             'nama_depan' => 'Dimas',
             'nama_belakang' => 'Putra',
             'password' => bcrypt('Dimas066'),
         ]);
-        
+        Account::create([
+            'role'  => 'Admin',
+            'no_id' => '19050900000',
+            'nama_depan' => 'Admin',
+            'nama_belakang' => 'Satu',
+            'password' => bcrypt('190509Bb'),
+        ]);
     }
 }

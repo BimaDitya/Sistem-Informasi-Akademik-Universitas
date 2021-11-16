@@ -33,7 +33,7 @@
                     <li class="nav-item mx-2">
                         <form action="/Logout" method="POST">
                             @csrf
-                            <a type="submit" class="nav-link"><i class="ph-arrow-bend-down-right-bold align-middle pe-3"></i>Logout</a>
+                            <button type="submit" class="btn nav-link"><i class="ph-arrow-bend-down-right-bold align-middle pe-3"></i>Logout</button>
                         </form>
                     </li>
                 </ul>

@@ -16,10 +16,11 @@ class CreateAccountsTable extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id('id');
-            $table->char('nim');
+            $table->char('no_id');
+            $table->string('password');
             $table->string('nama_depan');
             $table->string('nama_belakang');
-            $table->string('password');
+            $table->enum('role', ['Admin','Student'])->default('Student');
             $table->rememberToken();
         });
     }

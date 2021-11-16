@@ -25,16 +25,16 @@
         <div class="col-lg-6 vertical-center">
             <div class="card shadow">
                 <div class="card-header text-center fw-bold highlight-font">
-                    Ubah Data Mahasiswa
+                    Ubah Data Akun
                 </div>
                 <div class="card-body">
                     <a href="/Admin/Mahasiswa" class="btn btn-primary">Kembali</a>
                     <form action="/Admin/Mahasiswa/Update/{{ $Accounts->id }}" method="POST">
                         @csrf
                         <div class="mb-1">
-                            <label for="NIM" class="col-sm-4 col-form-label text-start">Nomor Induk Mahasiswa</label>
-                            <input type="number" name="nim" class="form-control" id="nim"
-                                placeholder="Nomor Induk Mahasiswa" value="{{ $Accounts->nim }}">
+                            <label for="NIM" class="col-sm-4 col-form-label text-start">Nomor Identitas</label>
+                            <input type="number" name="no_id" class="form-control" id="nim"
+                                placeholder="Nomor Identitas" value="{{ $Accounts->no_id }}">
                         </div>
                         <div class="row mb-1">
                             <div class="col">
@@ -48,6 +48,14 @@
                                 <input type="text" name="nama_belakang" class="form-control" placeholder="Nama Belakang"
                                     aria-label="Nama Belakang" value="{{ $Accounts->nama_belakang }}">
                             </div>
+                        </div>
+                        <div class="mb-1">
+                            <label for="Nama" class="col-sm-4 col-form-label text-start">Role Akun</label>
+                            <select class="form-select" name="role">
+                                <option selected>{{ $Accounts->role }}</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Student">Student</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="Password" class="col-sm-4 col-form-label text-start">Password</label>
