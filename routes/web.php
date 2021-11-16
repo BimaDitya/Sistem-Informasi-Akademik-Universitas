@@ -42,6 +42,10 @@ Route::post('/Mahasiswa/Update/School', [BerandaController::class, 'updateSchool
 Route::post('/Mahasiswa/Store/OrangTua', [BerandaController::class, 'storeParent']);
 Route::get('/Mahasiswa/Update/OrangTua', [BerandaController::class, 'updateParentDetail'])->middleware('auth');
 Route::post('/Mahasiswa/Update/Parent', [BerandaController::class, 'updateParent']);
+// Halaman Beranda Mahasiswa
+Route::post('/Beranda/Store/Image',  [BerandaController::class, 'storeImage']); 
+Route::get('/Beranda/Update/', [BerandaController::class, 'updateImageDetail'])->middleware('auth');
+Route::post('/Beranda/Update/Image', [BerandaController::class, 'updateImage']);
 
 // Admin Section //
 // Mahasiswa
