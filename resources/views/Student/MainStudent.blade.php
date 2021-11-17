@@ -21,6 +21,7 @@
 
 	</div>
 	@include('Partials.JavaScript')
+	
 </body>
 
 </html>

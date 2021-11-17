@@ -9,36 +9,20 @@ html, body {
 }
 
 /* My Custom Class */
-input[type="checkbox"] {
-  position: absolute;
-  transform: scale(0);
+.file_upload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
 }
-
-label {
-  cursor: pointer;
-}
-
-.m-checkbox {
-  display: grid;
-  width: 20PX;
-  height: 20PX;
-  border-radius: 4PX;
-  border: 1PX solid rgba(25, 25, 25, 0.175);
-  transition: all 0.5s;
-}
-.m-checkbox-tick ~ .ph-check {
-  opacity: 0; transition: all 0.5s;
-}
-
-input[type="checkbox"]:checked ~ .m-checkbox {background: #1AC0A2;}
-
-input[type="checkbox"]:checked ~ .m-checkbox .m-checkbox-tick {
-  opacity: 1;
-  /* transform: rotate(45deg);
-  width: 10PX;
-  border-color: #1AC0A2;
-  border-top: transparent;
-  border-left: transparent; */
+.file_upload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
 }
 
 .vertical-center {

@@ -85,7 +85,7 @@
                                 <select class="form-select" name="account_id">
                                     <option value="">Pilih Nomor Induk Mahasiswa</option>
                                     @foreach ($Accounts as $Item)
-                                        <option value="{{ $Item->id }}" {{ old('account_id') == $Item->id ? 'selected' : null}}>{{ $Item->nim }}</option>
+                                        <option value="{{ $Item->id }}" {{ old('account_id') == $Item->id ? 'selected' : null}}>{{ $Item->no_id }}</option>
                                     @endforeach
                                 </select>
                             </div>

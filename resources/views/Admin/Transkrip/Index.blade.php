@@ -31,7 +31,7 @@
             <tbody>
                 @foreach ($Grades as $Item)
                 <tr class="table-light text-center align-middle">
-                    <td>{{ $Item->account->nim ?? '' }}</td>
+                    <td>{{ $Item->account->no_id ?? '' }}</td>
                     <td>{{ $Item->course->matakuliah ?? ''}}</td>
                     <td>{{ $Item->sks ?? ''}}</td>
                     <td>{{ $Item->nilai ?? ''}}</td>
@@ -97,7 +97,7 @@
                                 <select class="form-select" name="account_id">
                                     <option value="">Pilih Nomor Induk Mahasiswa</option>
                                     @foreach ($Accounts as $Item)
-                                        <option value="{{ $Item->id }}" {{ old('account_id') == $Item->id ? 'selected' : null}}>{{ $Item->nim }}</option>
+                                        <option value="{{ $Item->id }}" {{ old('account_id') == $Item->id ? 'selected' : null}}>{{ $Item->no_id }}</option>
                                     @endforeach
                                 </select>
                             </div>

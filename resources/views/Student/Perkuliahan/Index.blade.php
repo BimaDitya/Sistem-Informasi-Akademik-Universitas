@@ -1,28 +1,26 @@
 @extends('Student.MainStudent')
 @section('Contents')
     {{-- Content --}}
-        <div class="container-fluid p-4">
             {{-- Data Mahasiswa --}}
-            <div class="card p-2">
-                <table class="table table-sm table-hover table-bordered border-primary shadow-sm">
-                    <tr class="table-primary text-center">
-                        <th>Kode</th>
+            <div class="card shadow">
+                <table class="table table-lg table-hover table-bordered">
+                <thead>
+                    <tr class="table-secondary text-center">
                         <th>Nama Matakuliah</th>
                         <th>Dosen Pengampu</th>
                         <th>Kelas</th>
-                        <th>Hari/Tanggal</th>
-                        <th>Ruang</th>
+                        <th>Hari</th>
                     </tr>
+                </thead>
+                <tbody>
                     <tr class="table-light text-center align-middle">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
                     </tr>
+                </tbody>
                 </table>
             </div>
-        </div>
         {{-- Content --}}
 @endsection

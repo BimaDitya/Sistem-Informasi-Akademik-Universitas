@@ -14,7 +14,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- Custom Style -->
-    <link href="{{ asset('Style/MyStyle.css') }}" rel="stylesheet">
+    <link href="{{ asset('Style/StudentStyle.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
 
 </head>
@@ -22,48 +22,54 @@
 <body>
     <main>
         <div class="row h-100 justify-content-center py-4">
-            <div class="col-6 vertical-center">
+            <div class="col-lg-6 vertical-center">
                 <div class="card shadow">
                     <div class="card-header text-center highlight-font fw-bold">
                         Update Asal Sekolah Mahasiswa
                     </div>
                     <div class="card-body">
-                        <a href="/Mahasiswa/Detail" class="btn btn-primary col-2">Kembali</a>
-                        <form action="/Mahasiswa/Update/School" method="POST">
+                        <a href="/Mahasiswa/Detail/{{ $Account->id }}" class="btn btn-primary col-2">Kembali</a>
+                        <form action="/Mahasiswa/Update/School/{{ $Account->id }}" method="POST">
                             @csrf
                             {{-- Input --}}
                             <label for="Kecamatan" class="col-sm-4 col-form-label text-start">Kecamatan</label>
                             <div class="input-group">
                                 <input type="text" name="kecamatan" class="form-control"
-                                    value="{{ $Data->school->kecamatan ?? '' }}" placeholder="Contoh: Duri Kepa">
+                                    value="{{ $Account->school->kecamatan ?? '' }}" placeholder="Contoh: Duri Kepa">
                             </div>
                             <label for="Kabupaten" class="col-sm-4 col-form-label text-start">Kabupaten</label>
                             <div class="input-group">
                                 <input type="text" name="kabupaten" class="form-control"
-                                    value="{{ $Data->school->kabupaten ?? '' }}" placeholder="Contoh: Kebon Jeruk">
+                                    value="{{ $Account->school->kabupaten ?? '' }}" placeholder="Contoh: Kebon Jeruk">
                             </div>
                             <label for="Provinsi" class="col-sm-4 col-form-label text-start">Provinsi</label>
                             <div class="input-group">
                                 <input type="text" name="provinsi" class="form-control"
-                                    value="{{ $Data->school->provinsi ?? '' }}" placeholder="Contoh: Jawa Barat">
+                                    value="{{ $Account->school->provinsi ?? '' }}" placeholder="Contoh: Jawa Barat">
                             </div>
                             <label for="Nama Sekolah" class="col-sm-4 col-form-label text-start">Nama Sekolah</label>
                             <div class="input-group">
                                 <input type="text" name="sekolah" class="form-control"
-                                    value="{{ $Data->school->sekolah ?? '' }}" placeholder="Contoh: SMAN 01 Duri Kepa">
+                                    value="{{ $Account->school->sekolah ?? '' }}" placeholder="Contoh: SMAN 01 Duri Kepa">
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-success col-2 mt-3">Update</button>
                             </div>
                         </form>
                     </div>
-                    @if (session('Gagal'))
-                    <div class="alert alert-alert alert-dismissible fade show col-6" role="alert">
-                        {{ session('Gagal') }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
                 </div>
+                @if (session('Gagal'))
+                <div class="alert alert-alert alert-dismissible fade show col mt-2" role="alert">
+                    {{ session('Gagal') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                @if (session('Berhasil'))
+                <div class="alert alert-success alert-dismissible fade show col mt-2" role="alert">
+                    {{ session('Berhasil') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
             </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
