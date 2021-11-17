@@ -6,20 +6,21 @@ use App\Models\Image;
 use App\Models\School;
 use App\Models\Account;
 use App\Models\Address;
-use App\Models\Payment;
 use App\Models\Student;
 use App\Models\Parental;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Payment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class StudentController extends Controller
 {
-    public function readHome()
-    {      
-        $Images = Account::first();
-        return view('Student.Beranda.Index' ,['Title' => 'Beranda'])->with('Images', $Images);
+    public function readHome(Account $Account, Image $id)
+    {   
+        $Image = Image::first();
+        Auth::user()->id;
+        return view('Student.Beranda.Index', compact('Account'), ['Title' => 'Beranda', 'Image' => $Image]);
     }
 
     // Students 
@@ -271,13 +272,12 @@ class StudentController extends Controller
     //Perkuliahan
     public function readCourse(Account $Account) 
     {
-        dd($Account->payment());
-        return view('Student.Perkuliahan.Index', compact('Account'),['Title' => 'Perkuliahan']);
+        return view('Student.Perkuliahan.Index', compact('Account'), ['Title' => 'Perkuliahan']);
     }
 
-    public function readPayment(Account $Account, Payment $Payment)
+    public function readPayment(Account $Account, Payment $id)
     {
-        // dd($Account->$Payment->nominal);
+        $Payment = Payment::first();
         return view('Student.Informasi.Index', compact('Account', 'Payment'), ['Title' => 'Informasi']);
     }
 }

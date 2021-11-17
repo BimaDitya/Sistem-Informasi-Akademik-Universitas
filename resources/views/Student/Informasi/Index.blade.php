@@ -12,9 +12,11 @@
 		</thead>
 		<tbody>
 			<tr class="table-light text-center align-middle">
-				<td>Rp. {{ $Account->$Payment->nominal ?? ''}}</td>
-				<td>{{ $Account->$Payment->tahun ?? '' }}</td>
-				<td>{{ $Account->$Payment->status ?? '' }}</td>
+			@foreach ($Payment as $Item)
+				<td>Rp. {{ number_format($Item->nominal, 0, ".", ".") ?? ''}}</td>
+				<td>{{ $Item->tahun ?? '' }}</td>
+				<td>{{ $Item->status ?? '' }}</td>
+			@endforeach
 			</tr>
 		</tbody>
 	</table>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -15,7 +16,7 @@ class LoginController extends Controller
         return view('Login.Index', ['Title' => 'Login']);
     }
 
-    public function authAccount(Request $request) {
+    public function authAccount(Request $request, Account $Account) {
 
         $input = $request->all();
    
@@ -27,9 +28,9 @@ class LoginController extends Controller
         if(Auth::attempt(array('no_id' => $input['no_id'], 'password' => $input['password'])))
         {
             if (auth()->user()->role == 'Admin') {
-                return redirect()->route('admin');
-            }else{
-                return redirect()->route('student');
+                return redirect('/Admin/Mahasiswa/');
+            } else {
+                return redirect('/Beranda');
             }
         }else{
             return redirect()->route('login')

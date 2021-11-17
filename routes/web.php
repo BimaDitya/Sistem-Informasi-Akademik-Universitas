@@ -6,9 +6,7 @@ use App\Models\Account;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
-// use App\Http\Controllers\BerandaController;
 use App\Http\Controllers\StudentController;
-use App\Models\Student;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +24,7 @@ Route::post('/Logout', [LoginController::class, 'logoutAccount']);
 
 // Student Sections
 // Bagian Beranda
-Route::get('/Beranda', [StudentController::class, 'readHome'])->name('student')->middleware('auth');
+Route::get('/Beranda', [StudentController::class, 'readHome'])->middleware('auth');
 // View Halaman Mahasiswa
 Route::get('/Mahasiswa/Detail/{Account}', [StudentController::class, 'detailStudent', function (Account $Account){
 	return $Account;
@@ -82,7 +80,7 @@ Route::get('Mahasiswa/Informasi/{Account}', [StudentController::class, 'readPaym
 
 // Admin Section //
 // Mahasiswa
-Route::get('/Admin/Mahasiswa/', [AdminController::class, 'readAccount'])->name('admin')->middleware('auth');
+Route::get('/Admin/Mahasiswa/{Account}', [AdminController::class, 'readAccount'])->middleware('auth');
 Route::post('/Admin/Mahasiswa/', [AdminController::class, 'storeAccount']);
 Route::get('/Admin/Mahasiswa/{id}', [AdminController::class, 'detailAccount']);
 Route::post('/Admin/Mahasiswa/Update/{id}', [AdminController::class, 'updateAccount']);
