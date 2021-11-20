@@ -56,7 +56,7 @@ https://templatemo.com/tm-568-digimedia
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
             <a href=" " class="logo">
-              Halo, Bima
+              Halo, <?php echo $isi[''];?>
             </a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
@@ -79,7 +79,7 @@ https://templatemo.com/tm-568-digimedia
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <p>Copyright © 2021 SIKIDU, Ltd. All Rights Reserved. 
+          <p>Copyright © 2021 SINIKAD, Ltd. All Rights Reserved. 
           <br> <a href="" target="_parent" title="Seng Butuh Info Chip"></a></p>
         </div>
       </div>
