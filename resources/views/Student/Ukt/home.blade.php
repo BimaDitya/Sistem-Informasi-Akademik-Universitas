@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-6 offset-lg-3">
         <div class="section-heading wow fadeIn" data-wow-duration="1s" data-wow-delay="0.5s">
-          <h6>SIKIDU</h6>
+          <h6>SINIKAD</h6>
           <h4>Pembayaran <em>UKT</em></h4>
           <div class="line-dec"></div>
         </div>
@@ -24,12 +24,12 @@
           </thead>
           <tbody>
           <tr>
-              <td>1</td>
-              <td>19050974045</td>
-              <td>tidak bidikmisi</td>
-              <td>2019/2020</td>
-              <td>Rp.2.400.000,-</td>
-              <td>Lunas</td>
+              <td><?php echo $no;?></td>
+              <td><?php echo $isi[''];?></td>
+              <td><?php echo $isi[''];?></td>
+              <td><?php echo $isi[''];?></td>
+              <td>Rp.<?php echo number_format($isi['']);?>,-</td>
+              <td><?php echo $isi[''];?></td>
             </tr>
           </tbody>
           <tfoot>
