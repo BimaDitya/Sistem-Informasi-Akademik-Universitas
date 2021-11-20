@@ -1,4 +1,4 @@
-@extends('Ukt.master')
+@extends('Student.Ukt.master')
 @section('konten')
 <div id="contact" class="contact-us section">
   <div class="container">
